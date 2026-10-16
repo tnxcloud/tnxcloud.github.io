@@ -443,7 +443,6 @@ window.saveSettings = saveSettings;
 window.saveCategories = saveCategories;
 window.switchTab = switchTab;
 
-/* ---------- Logo upload from device ---------- */
 function initLogoUpload() {
   var inp = $('logoFile');
   if (!inp || inp._init) return;
@@ -482,6 +481,31 @@ function initLogoUpload() {
     reader.readAsDataURL(file);
   });
 }
+
+/* ---------- Logo upload from device ---------- */
+function removeLogo() {
+  var url = $('setLogo').value.trim();
+  $('setLogo').value = '';
+  $('logoUploadStatus').textContent = 'Logo removed — Save Settings chap dao';
+  $('logoUploadStatus').style.color = '#f66';
+  // If the logo was hosted in this repo, delete the file too
+  var m = url.match(/github\.io\/(.+)$/);
+  if (m && gh && gh.owner) {
+    var path = m[1];
+    // Only delete files under logo/ to be safe
+    if (path.indexOf('logo/') === 0) {
+      ghGet(path).then(function (d) {
+        return fetch('https://api.github.com' + repoPath(path), {
+          method: 'DELETE', headers: ghHeaders(),
+          body: JSON.stringify({ message: 'Remove site logo', sha: d.sha, branch: gh.branch })
+        });
+      }).then(function () { toast('Logo file deleted ✓'); })
+      .catch(function () { /* ignore — file may not exist */ });
+    }
+  }
+  toast('Logo removed — Save Settings chap dao');
+}
+window.removeLogo = removeLogo;
 
 /* ---------- TMDB auto-fill ---------- */
 var _tmdbTimer = null;
