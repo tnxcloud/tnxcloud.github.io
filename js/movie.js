@@ -33,7 +33,7 @@
     var rating = m.rating ? '<span class="imdb">★ ' + esc(m.rating) + '</span>' : '';
     return '<a class="card" href="movie.html?id=' + encodeURIComponent(m.id) + '" style="animation-delay:' + (i * 40) + 'ms">' +
       '<div class="card-poster">' +
-      (m.poster_url ? '<img src="' + esc(m.poster_url) + '" alt="' + esc(m.title) + '" loading="lazy">' : '') +
+      (m.poster_url ? '<img src="' + esc(m.poster_url) + '" alt="' + esc(m.title) + '" loading="lazy" decoding="async">' : '') +
       '<div class="card-play"><span>▶</span></div></div>' +
       '<div class="card-info"><div class="card-title">' + esc(m.title) + '</div>' +
       '<div class="card-sub"><span>' + esc(m.year || '') + '</span>' + rating + '</div></div></a>';

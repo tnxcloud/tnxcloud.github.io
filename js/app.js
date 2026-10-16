@@ -45,7 +45,7 @@
     var rating = m.rating ? '<span class="imdb">★ ' + esc(m.rating) + '</span>' : '';
     return '<a class="card" href="movie.html?id=' + encodeURIComponent(m.id) + '" style="animation-delay:' + (i * 40) + 'ms">' +
       '<div class="card-poster">' +
-      (m.poster_url ? '<img src="' + esc(m.poster_url) + '" alt="' + esc(m.title) + '" loading="lazy">' : '<div style="width:100%;height:100%;display:grid;place-items:center;background:var(--grad-soft);font-size:2rem">🎬</div>') +
+      (m.poster_url ? '<img src="' + esc(m.poster_url) + '" alt="' + esc(m.title) + '" loading="lazy" decoding="async">' : '<div style="width:100%;height:100%;display:grid;place-items:center;background:var(--grad-soft);font-size:2rem">🎬</div>') +
       badge +
       '<div class="card-play"><span>▶</span></div>' +
       '</div>' +

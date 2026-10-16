@@ -409,6 +409,12 @@ tr:hover td { background: rgba(139,92,246,.05); }
   .dash-head { flex-direction: column; align-items: flex-start; }
 }
 
+/* 4K image support — crisp high-res rendering */
+img { image-rendering: -webkit-optimize-contrast; }
+.hero-bg img, .detail-backdrop img {
+  image-rendering: auto;
+}
+
 /* Notice / announcement popup (center modal) */
 .notice-modal-bg {
   position: fixed;
