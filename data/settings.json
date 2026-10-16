@@ -17,6 +17,7 @@
   "dark_default": true,
   "embed_server": "https://vidsrc.xyz/embed/movie/{tmdb}",
   "logo_url": "",
-  "notice": "This site can under mentanence",
-  "site_name": "TNxHuB"
+  "notice": "This site can under mentanence and",
+  "site_name": "TNxHuB",
+  "tmdb_api_key": ""
 }
