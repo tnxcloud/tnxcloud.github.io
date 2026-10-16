@@ -409,6 +409,25 @@ tr:hover td { background: rgba(139,92,246,.05); }
   .dash-head { flex-direction: column; align-items: flex-start; }
 }
 
+/* Toggle switch */
+.toggle-row { display:inline-flex; align-items:center; gap:10px; cursor:pointer; font-size:14px; color:var(--text); }
+.toggle-input { display:none; }
+.toggle-sw {
+  width:44px; height:24px; border-radius:999px; flex:none;
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.15);
+  position:relative; transition:all .25s ease;
+}
+.toggle-sw::after {
+  content:''; position:absolute; top:2px; left:2px;
+  width:18px; height:18px; border-radius:50%;
+  background:#888; transition:all .25s ease;
+}
+.toggle-input:checked + .toggle-sw {
+  background:linear-gradient(135deg,#8b5cf6,#06b6d4);
+  border-color:transparent;
+}
+.toggle-input:checked + .toggle-sw::after { left:22px; background:#fff; }
+
 /* 4K image support — crisp high-res rendering */
 img { image-rendering: -webkit-optimize-contrast; }
 .hero-bg img, .detail-backdrop img {

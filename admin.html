@@ -154,9 +154,9 @@
     <div class="field"><label>Extra Servers (one per line: Name|URL)</label><textarea id="mServers" rows="3" placeholder="Server 3|https://..."></textarea></div>
     <div class="field"><label>Description</label><textarea id="mDesc" rows="4"></textarea></div>
     <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;">
-      <label class="check-row"><input type="checkbox" id="mFeatured"> Featured</label>
-      <label class="check-row"><input type="checkbox" id="mTrending"> Trending</label>
-      <label class="check-row"><input type="checkbox" id="mListed" checked> Listed (visible on site)</label>
+      <label class="toggle-row"><input type="checkbox" id="mFeatured" class="toggle-input"><span class="toggle-sw"></span> Featured</label>
+      <label class="toggle-row"><input type="checkbox" id="mTrending" class="toggle-input"><span class="toggle-sw"></span> Trending</label>
+      <label class="toggle-row"><input type="checkbox" id="mListed" class="toggle-input" checked><span class="toggle-sw"></span> Listed <small style="color:var(--text-faint)">(visible on site)</small></label>
     </div>
     <div class="modal-actions">
       <button class="btn btn-ghost" type="button" onclick="closeMovieModal()">Cancel</button>
