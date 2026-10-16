@@ -201,7 +201,7 @@ function defaultSettings() {
     categories: ['Action', 'Comedy', 'Drama'],
     notice: '',
     dark_default: true,
-    ads: { enabled: false, head_code: '', body_code: '' }
+    ads: { head_enabled: false, head_code: '', body_enabled: false, body_code: '' }
   };
 }
 
@@ -399,16 +399,18 @@ function saveCategories() {
 
 function renderAds() {
   if (!settings) settings = defaultSettings();
-  if (!settings.ads) settings.ads = { enabled: false, head_code: '', body_code: '' };
-  $('adsEnabled').checked = !!settings.ads.enabled;
+  if (!settings.ads) settings.ads = { head_enabled: false, head_code: '', body_enabled: false, body_code: '' };
+  $('adsHeadEnabled').checked = !!settings.ads.head_enabled;
   $('adsHead').value = settings.ads.head_code || '';
+  $('adsBodyEnabled').checked = !!settings.ads.body_enabled;
   $('adsBody').value = settings.ads.body_code || '';
 }
 function saveAds() {
   if (!settings) settings = defaultSettings();
   settings.ads = {
-    enabled: $('adsEnabled').checked,
+    head_enabled: $('adsHeadEnabled').checked,
     head_code: $('adsHead').value,
+    body_enabled: $('adsBodyEnabled').checked,
     body_code: $('adsBody').value
   };
   persistSettings('Update ads')

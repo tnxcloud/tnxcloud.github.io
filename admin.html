@@ -113,8 +113,9 @@
     <!-- Ads tab -->
     <div class="tab-pane" id="tab-ads">
       <div class="tbl-wrap" style="padding:24px;">
-        <div class="check-row" style="margin-bottom:16px;"><input type="checkbox" id="adsEnabled"> <label for="adsEnabled" style="margin:0">Enable Ads</label></div>
+        <div class="check-row" style="margin-bottom:16px;"><input type="checkbox" id="adsHeadEnabled"> <label for="adsHeadEnabled" style="margin:0">Enable Head Code</label></div>
         <div class="field"><label>Head Code (paste ad script for &lt;head&gt;)</label><textarea id="adsHead" rows="5" placeholder="<script>...</script>" spellcheck="false"></textarea></div>
+        <div class="check-row" style="margin-bottom:16px;"><input type="checkbox" id="adsBodyEnabled"> <label for="adsBodyEnabled" style="margin:0">Enable Body Code</label></div>
         <div class="field"><label>Body Code (banner / popup ad code)</label><textarea id="adsBody" rows="5" placeholder="<script>...</script>" spellcheck="false"></textarea></div>
         <div><button class="btn btn-grad" type="button" onclick="saveAds()">Save Ads</button></div>
       </div>
