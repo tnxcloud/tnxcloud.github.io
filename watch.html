@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch — VioletFlex</title>
+<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="icon" href="logo/logo.png" type="image/png">
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="logo" id="siteLogo">VioletFlex</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+    </nav>
+    <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="player-wrap">
+    <h1 class="detail-title" id="wTitle" style="font-size:1.5rem;margin-bottom:14px;">Loading...</h1>
+
+    <div class="server-bar" id="serverBar">
+      <span class="lbl">Server</span>
+      <div id="serverBtns" style="display:flex;gap:10px;flex-wrap:wrap;"></div>
+    </div>
+
+    <div class="player-frame" id="playerFrame">
+      <div class="player-loading" id="playerLoading">
+        <div class="spinner"></div>
+        <div>Loading player...</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;">
+      <a class="btn btn-ghost btn-sm" id="wBack" href="index.html">← Back</a>
+      <a class="btn btn-ghost btn-sm" id="wDetails" href="#">Movie Details</a>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> <span id="footName">VioletFlex</span>. All rights reserved.</span>
+    <span>If a server fails, try another 🍿</span>
+  </div>
+</footer>
+
+<script src="js/watch.js?v=1"></script>
+</body>
+</html>

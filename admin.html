@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — VioletFlex</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="icon" href="logo/logo.png" type="image/png">
+</head>
+<body>
+
+<!-- ============ LOGIN VIEW (div-based, NO form element) ============ -->
+<div id="loginView" class="admin-login-wrap">
+  <div class="login-card">
+    <h1><span class="grad">VioletFlex</span> Admin</h1>
+    <p>Sign in with a GitHub personal access token to manage your catalog.</p>
+    <div class="login-err" id="loginError"></div>
+    <div id="loginForm">
+      <div class="field">
+        <label for="ghToken">GitHub Token</label>
+        <input type="password" id="ghToken" placeholder="Paste your token here" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="ghOwner">Owner</label>
+        <input type="text" id="ghOwner" value="tnxcloud" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="ghRepo">Repository</label>
+        <input type="text" id="ghRepo" value="moviesite-v2" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="ghBranch">Branch</label>
+        <input type="text" id="ghBranch" value="main" autocomplete="off" spellcheck="false">
+      </div>
+      <button type="button" class="btn btn-grad" id="loginBtn" style="width:100%" onclick="doAdminLogin()">Connect</button>
+    </div>
+    <p style="margin-top:18px;font-size:.78rem;color:var(--text-faint);">Token is never stored on any server — it stays in this browser only.</p>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD VIEW ============ -->
+<div id="dashView" style="display:none;">
+  <header class="header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="logo">VioletFlex <span style="font-size:.7rem;color:var(--text-faint)">ADMIN</span></a>
+      <div style="margin-left:auto;display:flex;gap:10px;">
+        <button class="btn btn-ghost btn-sm" type="button" onclick="window.open('index.html','_blank')">View Site</button>
+        <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" onclick="doLogout()">Disconnect</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="dash-head">
+      <h1 style="font-size:1.6rem;font-weight:800;">Dashboard</h1>
+      <button class="btn btn-grad" type="button" onclick="openMovieModal()">+ Add Movie</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n" id="stTotal">0</div><div class="l">Total Movies</div></div>
+      <div class="stat"><div class="n" id="stFeatured">0</div><div class="l">Featured</div></div>
+      <div class="stat"><div class="n" id="stTrending">0</div><div class="l">Trending</div></div>
+      <div class="stat"><div class="n" id="stHidden">0</div><div class="l">Unlisted</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn on" type="button" data-tab="movies" onclick="switchTab('movies')">🎬 Movies</button>
+      <button class="tab-btn" type="button" data-tab="settings" onclick="switchTab('settings')">⚙️ Site Settings</button>
+      <button class="tab-btn" type="button" data-tab="cats" onclick="switchTab('cats')">🏷️ Categories</button>
+    </div>
+
+    <!-- Movies tab -->
+    <div class="tab-pane on" id="tab-movies">
+      <div class="field" style="max-width:340px;">
+        <input type="text" id="movieSearch" placeholder="🔍 Filter movies..." oninput="filterMovieTable()">
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Poster</th><th>Title</th><th>Year</th><th>Genre</th><th>Flags</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="moviesTbody">
+            <tr><td colspan="7" style="text-align:center;color:var(--text-faint)">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Settings tab -->
+    <div class="tab-pane" id="tab-settings">
+      <div class="tbl-wrap" style="padding:24px;">
+        <div class="field"><label>Site Name</label><input type="text" id="setSiteName"></div>
+        <div class="field"><label>Logo URL (optional)</label><input type="text" id="setLogo"></div>
+        <div class="field"><label>Embed Server Template (use {tmdb} placeholder)</label><input type="text" id="setEmbed" placeholder="https://example.com/embed/movie/{tmdb}"></div>
+        <div class="field"><label>Announcement / Notice (optional)</label><input type="text" id="setNotice"></div>
+        <div class="check-row"><input type="checkbox" id="setDarkDefault" checked> <label for="setDarkDefault" style="margin:0">Dark theme by default</label></div>
+        <div style="margin-top:20px;"><button class="btn btn-grad" type="button" onclick="saveSettings()">Save Settings</button></div>
+      </div>
+    </div>
+
+    <!-- Categories tab -->
+    <div class="tab-pane" id="tab-cats">
+      <div class="tbl-wrap" style="padding:24px;">
+        <div class="field"><label>Categories (one per line)</label><textarea id="setCats" rows="8"></textarea></div>
+        <div><button class="btn btn-grad" type="button" onclick="saveCategories()">Save Categories</button></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ============ MOVIE MODAL ============ -->
+<div class="modal-bg" id="movieModal">
+  <div class="modal">
+    <h2 id="modalTitle">Add Movie</h2>
+    <input type="hidden" id="mId">
+    <div class="grid2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="field"><label>Title *</label><input type="text" id="mTitle"></div>
+      <div class="field"><label>Year</label><input type="text" id="mYear"></div>
+      <div class="field"><label>Genre</label><input type="text" id="mGenre"></div>
+      <div class="field"><label>TMDB ID</label><input type="text" id="mTmdb"></div>
+      <div class="field"><label>Rating (e.g. 8.2)</label><input type="text" id="mRating"></div>
+      <div class="field"><label>Duration</label><input type="text" id="mDuration" placeholder="2h 15m"></div>
+      <div class="field"><label>Director</label><input type="text" id="mDirector"></div>
+      <div class="field"><label>Cast (comma separated)</label><input type="text" id="mCast"></div>
+    </div>
+    <div class="field"><label>Poster URL</label><input type="text" id="mPoster"></div>
+    <div class="field"><label>Backdrop URL</label><input type="text" id="mBackdrop"></div>
+    <div class="field"><label>Watch URL (Server 1 — direct video file)</label><input type="text" id="mVideo"></div>
+    <div class="field"><label>Extra Servers (one per line: Name|URL)</label><textarea id="mServers" rows="3" placeholder="Server 3|https://..."></textarea></div>
+    <div class="field"><label>Description</label><textarea id="mDesc" rows="4"></textarea></div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;">
+      <label class="check-row"><input type="checkbox" id="mFeatured"> Featured</label>
+      <label class="check-row"><input type="checkbox" id="mTrending"> Trending</label>
+      <label class="check-row"><input type="checkbox" id="mListed" checked> Listed (visible on site)</label>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" type="button" onclick="closeMovieModal()">Cancel</button>
+      <button class="btn btn-danger" type="button" id="mDeleteBtn" style="display:none" onclick="deleteMovie()">Delete</button>
+      <button class="btn btn-grad" type="button" onclick="saveMovie()">Save Movie</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/admin.js?v=1"></script>
+</body>
+</html>
