@@ -264,6 +264,7 @@ function openMovieModal(id) {
   $('mReleaseDate').value = m ? (m.release_date || '') : '';
   $('mGenre').value = m ? (m.genre || '') : '';
   $('mLang').value = m ? (m.language || '') : '';
+  $('mCountry').value = m ? (m.country || '') : '';
   $('mTmdb').value = m ? (m.tmdb_id || '') : '';
   $('mRating').value = m ? (m.rating || '') : '';
   $('mDuration').value = m ? (m.duration || '') : '';
@@ -312,6 +313,7 @@ function collectMovie() {
     release_date: $('mReleaseDate').value,
     genre: $('mGenre').value.trim(),
     language: $('mLang').value.trim(),
+    country: $('mCountry').value.trim(),
     tmdb_id: $('mTmdb').value.trim(),
     rating: $('mRating').value.trim(),
     duration: $('mDuration').value.trim(),
@@ -658,6 +660,7 @@ function tmdbFillMovie(id) {
       var langs = (m.spoken_languages || []).map(function (l) { return langNames[l.iso_639_1] || l.english_name || l.iso_639_1; }).filter(Boolean);
       if (!langs.length && m.original_language) langs = [langNames[m.original_language] || m.original_language];
       $('mLang').value = langs.join(', ');
+      $('mCountry').value = (m.production_countries || []).map(function (c) { return c.name; }).join(', ');
       $('mTmdb').value = m.id || '';
       $('mRating').value = m.vote_average ? Number(m.vote_average).toFixed(1) : '';
       $('mDuration').value = m.runtime ? Math.floor(m.runtime / 60) + 'h ' + (m.runtime % 60) + 'm' : '';

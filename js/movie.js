@@ -77,6 +77,7 @@
       if (m.cast) extra.push(['Cast', Array.isArray(m.cast) ? m.cast.join(', ') : m.cast]);
       if (m.genre) extra.push(['Genre', m.genre]);
       if (m.language) extra.push(['Language', m.language]);
+      if (m.country) extra.push(['Country', m.country]);
       if (m.release_date) extra.push(['Release Date', m.release_date]);
       document.getElementById('dExtra').innerHTML = extra.map(function (e) {
         return '<div class="extra-box"><div class="k">' + esc(e[0]) + '</div><div class="v">' + esc(e[1]) + '</div></div>';
