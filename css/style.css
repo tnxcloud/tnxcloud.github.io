@@ -431,6 +431,9 @@ tr:hover td { background: rgba(139,92,246,.05); }
 .toggle-sw.toggle-sm::after { width:14px; height:14px; }
 .toggle-input:checked + .toggle-sw.toggle-sm::after { left:18px; }
 
+.detail-poster-col { display:flex; flex-direction:column; gap:12px; flex:none; }
+.btn-watch-side { text-align:center; }
+
 /* Cast grid with photos — minimal */
 .cast-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:10px; margin-top:12px; }
 .cast-card { text-align:center; }
