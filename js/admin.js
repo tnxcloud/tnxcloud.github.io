@@ -197,6 +197,7 @@ function defaultSettings() {
     site_name: 'VioletFlex',
     logo_url: '',
     embed_server: 'https://vidsrc.xyz/embed/movie/{tmdb}',
+    tmdb_api_key: '',
     categories: ['Action', 'Comedy', 'Drama'],
     notice: '',
     dark_default: true,
@@ -277,7 +278,10 @@ function openMovieModal(id) {
   $('mTrending').checked = !!(m && m.is_trending);
   $('mListed').checked = !m || m.listed !== false;
   $('mDeleteBtn').style.display = m ? '' : 'none';
+  $('tmdbSearch').value = m ? (m.title || '') : '';
+  $('tmdbResults').style.display = 'none';
   $('movieModal').classList.add('show');
+  initTmdbSearch();
 }
 
 function closeMovieModal() {
@@ -365,6 +369,7 @@ function renderSettings() {
   $('setSiteName').value = settings.site_name || '';
   $('setLogo').value = settings.logo_url || '';
   $('setEmbed').value = settings.embed_server || '';
+  $('setTmdbKey').value = settings.tmdb_api_key || '';
   $('setNotice').value = settings.notice || '';
   $('setDarkDefault').checked = settings.dark_default !== false;
   $('setCats').value = (settings.categories || []).join('\n');
@@ -375,6 +380,7 @@ function saveSettings() {
   settings.site_name = $('setSiteName').value.trim() || 'VioletFlex';
   settings.logo_url = $('setLogo').value.trim();
   settings.embed_server = $('setEmbed').value.trim();
+  settings.tmdb_api_key = $('setTmdbKey').value.trim();
   settings.notice = $('setNotice').value.trim();
   settings.dark_default = $('setDarkDefault').checked;
   persistSettings('Update site settings')
@@ -435,3 +441,74 @@ window.filterMovieTable = filterMovieTable;
 window.saveSettings = saveSettings;
 window.saveCategories = saveCategories;
 window.switchTab = switchTab;
+
+/* ---------- TMDB auto-fill ---------- */
+var _tmdbTimer = null;
+function tmdbKey() { return (settings && settings.tmdb_api_key || '').trim(); }
+
+function initTmdbSearch() {
+  var inp = $('tmdbSearch');
+  if (!inp || inp._tmdbInit) return;
+  inp._tmdbInit = true;
+  inp.addEventListener('input', function () {
+    clearTimeout(_tmdbTimer);
+    var q = inp.value.trim();
+    var box = $('tmdbResults');
+    if (q.length < 2) { box.style.display = 'none'; box.innerHTML = ''; return; }
+    if (!tmdbKey()) { box.style.display = 'block'; box.innerHTML = '<div style="padding:12px;color:#f66;">TMDB API key set koro Site Settings-e.</div>'; return; }
+    _tmdbTimer = setTimeout(function () { tmdbSearch(q); }, 400);
+  });
+  document.addEventListener('click', function (e) {
+    var box = $('tmdbResults');
+    if (box && !document.getElementById('tmdbSearchWrap').contains(e.target)) { box.style.display = 'none'; }
+  });
+}
+
+function tmdbSearch(q) {
+  var box = $('tmdbResults');
+  box.style.display = 'block';
+  box.innerHTML = '<div style="padding:12px;color:#888;">Searching…</div>';
+  fetch('https://api.themoviedb.org/3/search/movie?api_key=' + encodeURIComponent(tmdbKey()) + '&query=' + encodeURIComponent(q) + '&include_adult=false')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var list = (d.results || []).slice(0, 8);
+      if (!list.length) { box.innerHTML = '<div style="padding:12px;color:#888;">Kichu paini.</div>'; return; }
+      box.innerHTML = list.map(function (m) {
+        var yr = (m.release_date || '').slice(0, 4);
+        var poster = m.poster_path ? 'https://image.tmdb.org/t/p/w92' + m.poster_path : '';
+        return '<div class="tmdb-item" data-id="' + m.id + '" style="display:flex;gap:10px;align-items:center;padding:8px;cursor:pointer;border-radius:8px;" onmouseover="this.style.background=\'rgba(139,92,246,.12)\'" onmouseout="this.style.background=\'\'">' +
+          (poster ? '<img src="' + poster + '" style="width:36px;height:54px;object-fit:cover;border-radius:6px;">' : '') +
+          '<div><div style="font-weight:600;">' + esc(m.title) + '</div><div style="font-size:12px;color:#888;">' + yr + (m.original_language ? ' • ' + m.original_language.toUpperCase() : '') + '</div></div></div>';
+      }).join('');
+      box.querySelectorAll('.tmdb-item').forEach(function (el) {
+        el.addEventListener('click', function () { tmdbFillMovie(el.getAttribute('data-id')); });
+      });
+    })
+    .catch(function (e) { box.innerHTML = '<div style="padding:12px;color:#f66;">Error: ' + esc(e.message) + '</div>'; });
+}
+
+function tmdbFillMovie(id) {
+  var box = $('tmdbResults');
+  box.innerHTML = '<div style="padding:12px;color:#888;">Loading details…</div>';
+  fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + encodeURIComponent(tmdbKey()) + '&append_to_response=credits')
+    .then(function (r) { return r.json(); })
+    .then(function (m) {
+      box.style.display = 'none';
+      $('mTitle').value = m.title || '';
+      $('mYear').value = (m.release_date || '').slice(0, 4);
+      $('mGenre').value = (m.genres || []).map(function (g) { return g.name; }).join(', ');
+      $('mTmdb').value = m.id || '';
+      $('mRating').value = m.vote_average ? Number(m.vote_average).toFixed(1) : '';
+      $('mDuration').value = m.runtime ? Math.floor(m.runtime / 60) + 'h ' + (m.runtime % 60) + 'm' : '';
+      var dir = (m.credits && m.credits.crew || []).filter(function (c) { return c.job === 'Director'; });
+      $('mDirector').value = dir.length ? dir[0].name : '';
+      $('mCast').value = (m.credits && m.credits.cast || []).slice(0, 8).map(function (c) { return c.name; }).join(', ');
+      $('mPoster').value = m.poster_path ? 'https://image.tmdb.org/t/p/original' + m.poster_path : '';
+      $('mBackdrop').value = m.backdrop_path ? 'https://image.tmdb.org/t/p/original' + m.backdrop_path : '';
+      $('mDesc').value = m.overview || '';
+      $('tmdbSearch').value = m.title || '';
+      toast('TMDB theke fill hoise ✓');
+    })
+    .catch(function (e) { toast('TMDB error: ' + e.message); });
+}
+window.tmdbFillMovie = tmdbFillMovie;

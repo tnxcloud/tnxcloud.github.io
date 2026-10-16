@@ -93,6 +93,7 @@
         <div class="field"><label>Site Name</label><input type="text" id="setSiteName"></div>
         <div class="field"><label>Logo URL (optional)</label><input type="text" id="setLogo"></div>
         <div class="field"><label>Embed Server Template (use {tmdb} placeholder)</label><input type="text" id="setEmbed" placeholder="https://example.com/embed/movie/{tmdb}"></div>
+        <div class="field"><label>TMDB API Key (for auto-fill — get free at themoviedb.org)</label><input type="text" id="setTmdbKey" placeholder="Paste your TMDB API key" autocomplete="off" spellcheck="false"></div>
         <div class="field"><label>Announcement / Notice (optional)</label><input type="text" id="setNotice"></div>
         <div class="check-row"><input type="checkbox" id="setDarkDefault" checked> <label for="setDarkDefault" style="margin:0">Dark theme by default</label></div>
         <div style="margin-top:20px;"><button class="btn btn-grad" type="button" onclick="saveSettings()">Save Settings</button></div>
@@ -114,6 +115,11 @@
   <div class="modal">
     <h2 id="modalTitle">Add Movie</h2>
     <input type="hidden" id="mId">
+    <div class="field" id="tmdbSearchWrap" style="margin-bottom:16px;">
+      <label>🔍 TMDB Search (auto-fill)</label>
+      <input type="text" id="tmdbSearch" placeholder="Type movie name…" autocomplete="off" spellcheck="false">
+      <div id="tmdbResults" style="display:none;max-height:220px;overflow-y:auto;margin-top:8px;border:1px solid rgba(139,92,246,.25);border-radius:12px;"></div>
+    </div>
     <div class="grid2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div class="field"><label>Title *</label><input type="text" id="mTitle"></div>
       <div class="field"><label>Year</label><input type="text" id="mYear"></div>
