@@ -432,6 +432,12 @@ tr:hover td { background: rgba(139,92,246,.05); }
 .toggle-input:checked + .toggle-sw.toggle-sm::after { left:18px; }
 
 .detail-poster-col { display:flex; flex-direction:column; gap:12px; flex:none; }
+.detail-hero { position:relative; }
+.back-overlay {
+  position:absolute; top:16px; left:16px; z-index:5;
+  background:rgba(0,0,0,.55) !important;
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
 .btn-watch-side { text-align:center; }
 
 /* Cast grid with photos — minimal */
