@@ -516,3 +516,114 @@ img { image-rendering: -webkit-optimize-contrast; }
 .notice-close:hover { color: #f66; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popIn { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ============ PRO ANIMATION SYSTEM ============ */
+
+/* --- page entrance --- */
+@keyframes riseIn { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeSlideL { from { opacity:0; transform:translateX(-24px); } to { opacity:1; transform:translateX(0); } }
+@keyframes scaleIn { from { opacity:0; transform:scale(.94); } to { opacity:1; transform:scale(1); } }
+@keyframes kenburns { 0% { transform:scale(1); } 100% { transform:scale(1.12); } }
+@keyframes floatY { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+@keyframes shimmer { 0% { background-position:-400px 0; } 100% { background-position:400px 0; } }
+@keyframes glowPulse { 0%,100% { box-shadow:0 0 18px rgba(139,92,246,.35); } 50% { box-shadow:0 0 34px rgba(6,182,212,.5); } }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* --- scroll reveal --- */
+.reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity:1; transform:none; }
+
+/* --- hero --- */
+.hero-bg img { animation:kenburns 18s ease-in-out infinite alternate; }
+.hero-content > * { animation:riseIn .8s cubic-bezier(.22,1,.36,1) both; }
+.hero-content > *:nth-child(2) { animation-delay:.08s; }
+.hero-content > *:nth-child(3) { animation-delay:.16s; }
+.hero-content > *:nth-child(4) { animation-delay:.24s; }
+.hero-content > *:nth-child(5) { animation-delay:.32s; }
+.hero-badge { animation:floatY 4s ease-in-out infinite; }
+
+/* --- movie cards: 3D tilt + lift --- */
+.card { transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; transform-style:preserve-3d; will-change:transform; }
+.card:hover { transform:translateY(-8px) scale(1.03); box-shadow:0 18px 44px rgba(0,0,0,.5), 0 0 24px rgba(139,92,246,.25); z-index:2; }
+.card-poster { overflow:hidden; }
+.card-poster img { transition:transform .6s cubic-bezier(.22,1,.36,1); }
+.card:hover .card-poster img { transform:scale(1.1); }
+
+/* --- stagger rows on load --- */
+.poster-row .card { animation:riseIn .6s cubic-bezier(.22,1,.36,1) both; }
+.poster-row .card:nth-child(2) { animation-delay:.05s; }
+.poster-row .card:nth-child(3) { animation-delay:.1s; }
+.poster-row .card:nth-child(4) { animation-delay:.15s; }
+.poster-row .card:nth-child(5) { animation-delay:.2s; }
+.poster-row .card:nth-child(6) { animation-delay:.25s; }
+.poster-row .card:nth-child(n+7) { animation-delay:.3s; }
+
+/* --- buttons: magnetic glow --- */
+.btn { transition:transform .2s ease, box-shadow .3s ease, filter .2s ease; position:relative; overflow:hidden; }
+.btn:hover { transform:translateY(-2px); filter:brightness(1.1); }
+.btn:active { transform:translateY(0) scale(.98); }
+.btn-grad:hover { box-shadow:0 8px 28px rgba(139,92,246,.5); animation:glowPulse 2s ease-in-out infinite; }
+.btn::after { content:''; position:absolute; top:0; left:-80%; width:50%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.25),transparent); transform:skewX(-20deg); transition:left .5s ease; }
+.btn:hover::after { left:130%; }
+
+/* --- chips --- */
+.chip { transition:all .25s cubic-bezier(.22,1,.36,1); }
+.chip:hover { transform:translateY(-2px); }
+.chip.on { animation:scaleIn .3s ease; }
+
+/* --- cast --- */
+.cast-card { transition:transform .25s ease; }
+.cast-card:hover { transform:translateY(-4px) scale(1.06); }
+.cast-card img { transition:box-shadow .3s ease; }
+.cast-card:hover img { box-shadow:0 0 18px rgba(139,92,246,.5); }
+.hcast-item { transition:transform .25s ease; }
+.hcast-item:hover { transform:scale(1.18); }
+
+/* --- detail page --- */
+.detail-poster img { transition:transform .5s ease, box-shadow .5s ease; }
+.detail-poster:hover img { transform:scale(1.03); box-shadow:0 16px 40px rgba(139,92,246,.3); }
+.extra-box { transition:transform .25s ease, border-color .25s ease; animation:riseIn .5s both; }
+.extra-box:hover { transform:translateY(-3px); border-color:rgba(139,92,246,.5); }
+.extra-box:nth-child(2) { animation-delay:.06s; }
+.extra-box:nth-child(3) { animation-delay:.12s; }
+.extra-box:nth-child(4) { animation-delay:.18s; }
+
+/* --- skeleton shimmer --- */
+.sk { background:linear-gradient(90deg, rgba(255,255,255,.05) 25%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.05) 75%); background-size:800px 100%; animation:shimmer 1.4s linear infinite; border-radius:12px; }
+
+/* --- modal / toast --- */
+.modal.show .modal-box { animation:popIn .35s cubic-bezier(.22,1,.36,1); }
+.toast.show { animation:fadeSlideL .3s ease; }
+
+/* --- toggle switch smooth --- */
+.toggle-sw { transition:all .3s cubic-bezier(.22,1,.36,1); }
+.toggle-sw::after { transition:all .3s cubic-bezier(.34,1.56,.64,1); }
+
+/* --- admin table rows --- */
+.tbl-wrap tbody tr { transition:background .2s ease, transform .2s ease; }
+.tbl-wrap tbody tr:hover { background:rgba(139,92,246,.07); transform:translateX(4px); }
+
+/* --- theme toggle --- */
+.theme-btn { transition:transform .3s ease; }
+.theme-btn:hover { transform:rotate(20deg) scale(1.1); }
+
+/* --- search results --- */
+.sr-item { animation:fadeSlideL .25s ease both; }
+.sr-item:nth-child(2) { animation-delay:.04s; }
+.sr-item:nth-child(3) { animation-delay:.08s; }
+.sr-item:nth-child(4) { animation-delay:.12s; }
+
+/* --- watch page --- */
+.player-frame { animation:scaleIn .5s cubic-bezier(.22,1,.36,1); }
+.server-btn { transition:all .25s ease; }
+.server-btn:hover { transform:translateY(-2px); }
+.server-btn.active { animation:glowPulse 2.5s ease-in-out infinite; }
+
+/* --- back button --- */
+.back-overlay { transition:transform .25s ease, background .25s ease; }
+.back-overlay:hover { transform:translateX(-4px); }
+
+/* --- reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
