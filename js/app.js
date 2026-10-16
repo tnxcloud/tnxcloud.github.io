@@ -1,4 +1,4 @@
-/* VioletFlex — homepage logic */
+/* TNxHuB — homepage logic */
 (function () {
   'use strict';
 

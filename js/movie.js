@@ -1,4 +1,4 @@
-/* VioletFlex — movie detail logic */
+/* TNxHuB — movie detail logic */
 (function () {
   'use strict';
 
