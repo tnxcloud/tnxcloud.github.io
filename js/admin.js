@@ -281,6 +281,7 @@ function openMovieModal(id) {
   $('mDeleteBtn').style.display = m ? '' : 'none';
   $('tmdbSearch').value = m ? (m.title || '') : '';
   $('tmdbResults').style.display = 'none';
+  window._tmdbCast = null;
   $('mPosterFile').value = ''; $('posterUploadStatus').textContent = '';
   $('mBackdropFile').value = ''; $('backdropUploadStatus').textContent = '';
   $('movieModal').classList.add('show');
@@ -316,7 +317,9 @@ function collectMovie() {
     rating: $('mRating').value.trim(),
     duration: $('mDuration').value.trim(),
     director: $('mDirector').value.trim(),
-    cast: $('mCast').value.trim(),
+    cast: (window._tmdbCast && window._tmdbCast.length &&
+      window._tmdbCast.map(function (c) { return c.name; }).join(', ') === $('mCast').value.trim())
+      ? window._tmdbCast : $('mCast').value.trim(),
     poster_url: $('mPoster').value.trim(),
     backdrop_url: $('mBackdrop').value.trim(),
     video_url: $('mVideo').value.trim(),
@@ -677,7 +680,10 @@ function tmdbFillMovie(id) {
       $('mDuration').value = m.runtime ? Math.floor(m.runtime / 60) + 'h ' + (m.runtime % 60) + 'm' : '';
       var dir = (m.credits && m.credits.crew || []).filter(function (c) { return c.job === 'Director'; });
       $('mDirector').value = dir.length ? dir[0].name : '';
-      $('mCast').value = (m.credits && m.credits.cast || []).slice(0, 8).map(function (c) { return c.name; }).join(', ');
+      window._tmdbCast = (m.credits && m.credits.cast || []).slice(0, 12).map(function (c) {
+        return { name: c.name || '', character: c.character || '', photo: c.profile_path ? 'https://image.tmdb.org/t/p/w185' + c.profile_path : '' };
+      }).filter(function (c) { return c.name; });
+      $('mCast').value = window._tmdbCast.map(function (c) { return c.name; }).join(', ');
       $('mPoster').value = m.poster_path ? 'https://image.tmdb.org/t/p/original' + m.poster_path : '';
       $('mBackdrop').value = m.backdrop_path ? 'https://image.tmdb.org/t/p/original' + m.backdrop_path : '';
       $('mDesc').value = m.overview || '';

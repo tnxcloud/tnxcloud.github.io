@@ -74,12 +74,6 @@
 
       var extra = [];
       if (m.director) extra.push(['Director', m.director]);
-      if (m.cast) {
-        var castStr = Array.isArray(m.cast)
-          ? m.cast.map(function (c) { return (c && typeof c === 'object') ? (c.name || '') : String(c); }).filter(Boolean).join(', ')
-          : String(m.cast);
-        if (castStr) extra.push(['Cast', castStr]);
-      }
       if (m.genre) extra.push(['Genre', m.genre]);
       if (m.language) extra.push(['Language', m.language]);
       if (m.country) extra.push(['Country', m.country]);
@@ -89,6 +83,32 @@
       }).join('');
 
       document.getElementById('dWatch').href = 'watch.html?id=' + encodeURIComponent(m.id);
+
+      /* cast with photos from stored data */
+      var castSec = document.getElementById('dCastSec');
+      var castBox = document.getElementById('dCast');
+      function renderCastList(arr) {
+        if (!castSec || !castBox || !arr.length) return;
+        castSec.style.display = '';
+        castBox.innerHTML = arr.map(function (c) {
+          var img = c.photo
+            ? '<img src="' + esc(c.photo) + '" alt="' + esc(c.name) + '" loading="lazy" decoding="async">'
+            : '<div class="cast-noimg">🎭</div>';
+          return '<div class="cast-card">' + img +
+            '<div class="cast-name">' + esc(c.name) + '</div>' +
+            (c.character ? '<div class="cast-char">' + esc(c.character) + '</div>' : '') + '</div>';
+        }).join('');
+      }
+      var castArr = [];
+      if (Array.isArray(m.cast)) {
+        castArr = m.cast.map(function (c) {
+          if (c && typeof c === 'object') return { name: c.name || '', photo: c.photo || '', character: c.character || '' };
+          return { name: String(c), photo: '', character: '' };
+        }).filter(function (c) { return c.name; });
+      } else if (m.cast) {
+        castArr = String(m.cast).split(',').map(function (s) { return { name: s.trim(), photo: '', character: '' }; }).filter(function (c) { return c.name; });
+      }
+      renderCastList(castArr);
 
       // Related (same genre)
       var g = (m.genre || '').split(',')[0].trim().toLowerCase();
