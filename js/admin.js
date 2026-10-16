@@ -281,8 +281,11 @@ function openMovieModal(id) {
   $('mDeleteBtn').style.display = m ? '' : 'none';
   $('tmdbSearch').value = m ? (m.title || '') : '';
   $('tmdbResults').style.display = 'none';
+  $('mPosterFile').value = ''; $('posterUploadStatus').textContent = '';
+  $('mBackdropFile').value = ''; $('backdropUploadStatus').textContent = '';
   $('movieModal').classList.add('show');
   initTmdbSearch();
+  initMovieImageUploads();
 }
 
 function closeMovieModal() {
@@ -505,6 +508,54 @@ function initLogoUpload() {
     };
     reader.readAsDataURL(file);
   });
+}
+
+/* ---------- Movie poster/backdrop upload from device ---------- */
+function uploadMovieImage(file, folder, urlFieldId, statusId) {
+  var status = $(statusId);
+  status.textContent = 'Uploading… (4K ok)';
+  status.style.color = '#888';
+  var reader = new FileReader();
+  reader.onload = function () {
+    var base64 = String(reader.result).split(',')[1];
+    var ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (['jpg', 'jpeg', 'png', 'gif', 'webp'].indexOf(ext) < 0) ext = 'jpg';
+    var path = folder + '/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.' + ext;
+    var body = { message: 'Upload movie ' + folder.slice(0, -1), content: base64, branch: gh.branch };
+    fetch('https://api.github.com' + repoPath(path), {
+      method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('Upload failed: ' + r.status);
+      return r.json();
+    }).then(function () {
+      var url = 'https://' + gh.owner + '.github.io/' + gh.repo + '/' + path;
+      if (/\.github\.io$/.test(gh.repo)) url = 'https://' + gh.owner + '.github.io/' + path;
+      $(urlFieldId).value = url;
+      status.textContent = 'Uploaded ✓';
+      status.style.color = '#4ade80';
+      toast('Image uploaded ✓');
+    }).catch(function (e) {
+      status.textContent = 'Error: ' + e.message;
+      status.style.color = '#f66';
+    });
+  };
+  reader.readAsDataURL(file);
+}
+function initMovieImageUploads() {
+  var pf = $('mPosterFile');
+  if (pf && !pf._init) {
+    pf._init = true;
+    pf.addEventListener('change', function () {
+      if (pf.files[0]) uploadMovieImage(pf.files[0], 'posters', 'mPoster', 'posterUploadStatus');
+    });
+  }
+  var bf = $('mBackdropFile');
+  if (bf && !bf._init) {
+    bf._init = true;
+    bf.addEventListener('change', function () {
+      if (bf.files[0]) uploadMovieImage(bf.files[0], 'backdrops', 'mBackdrop', 'backdropUploadStatus');
+    });
+  }
 }
 
 /* ---------- Logo upload from device ---------- */
