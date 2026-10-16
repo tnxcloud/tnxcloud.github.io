@@ -427,6 +427,9 @@ tr:hover td { background: rgba(139,92,246,.05); }
   border-color:transparent;
 }
 .toggle-input:checked + .toggle-sw::after { left:22px; background:#fff; }
+.toggle-sw.toggle-sm { width:36px; height:20px; }
+.toggle-sw.toggle-sm::after { width:14px; height:14px; }
+.toggle-input:checked + .toggle-sw.toggle-sm::after { left:18px; }
 
 /* 4K image support — crisp high-res rendering */
 img { image-rendering: -webkit-optimize-contrast; }

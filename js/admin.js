@@ -231,9 +231,7 @@ function renderMovies() {
       '<td>' + esc(m.year || '—') + '</td>' +
       '<td>' + esc(m.genre || '—') + '</td>' +
       '<td>' + flags.join(' ') + '</td>' +
-      '<td>' + (m.listed === false
-        ? '<span class="pill" style="color:var(--warn)">Unlisted</span>'
-        : '<span class="pill" style="color:var(--success)">Listed</span>') + '</td>' +
+      '<td><label class="toggle-row" title="Listed / Unlisted"><input type="checkbox" class="toggle-input" ' + (m.listed === false ? '' : 'checked') + ' onchange="toggleListed(\'' + String(m.id).replace(/'/g, "\\'") + '\', this.checked)"><span class="toggle-sw toggle-sm"></span></label></td>' +
       '<td><div class="row-actions">' +
       '<button type="button" class="btn btn-ghost btn-sm" onclick="openMovieModal(\'' + String(m.id).replace(/'/g, "\\'") + '\')">Edit</button>' +
       '<button type="button" class="btn btn-danger btn-sm" onclick="quickDelete(\'' + String(m.id).replace(/'/g, "\\'") + '\')">Delete</button>' +
@@ -469,6 +467,19 @@ window.openMovieModal = openMovieModal;
 window.closeMovieModal = closeMovieModal;
 window.saveMovie = saveMovie;
 window.deleteMovie = deleteMovie;
+window.toggleListed = toggleListed;
+
+function toggleListed(id, checked) {
+  for (var i = 0; i < movies.length; i++) {
+    if (String(movies[i].id) === String(id)) {
+      movies[i].listed = !!checked;
+      break;
+    }
+  }
+  persistMovies(checked ? 'List movie' : 'Unlist movie')
+    .then(function () { renderMovies(); toast(checked ? 'Listed ✓' : 'Unlisted ✓'); })
+    .catch(function (e) { toast('Failed: ' + e.message); renderMovies(); });
+}
 window.quickDelete = quickDelete;
 window.filterMovieTable = filterMovieTable;
 window.saveSettings = saveSettings;
