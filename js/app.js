@@ -127,7 +127,9 @@
   function applyFilter() {
     var vis = movies.filter(listed);
     var trending = vis.filter(function (m) { return m.is_trending; });
-    var latest = vis.slice().reverse().slice(0, 20);
+    var latest = vis.slice().sort(function (a, b) {
+      return String(b.release_date || b.year || '').localeCompare(String(a.release_date || a.year || ''));
+    }).slice(0, 20);
     if (activeCat !== 'All') {
       var f = vis.filter(function (m) {
         return (m.genre || '').toLowerCase().split(/[,\/]/).map(function (s) { return s.trim(); }).indexOf(activeCat.toLowerCase()) > -1;
