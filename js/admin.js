@@ -261,6 +261,7 @@ function openMovieModal(id) {
   $('mId').value = m ? m.id : '';
   $('mTitle').value = m ? (m.title || '') : '';
   $('mYear').value = m ? (m.year || '') : '';
+  $('mReleaseDate').value = m ? (m.release_date || '') : '';
   $('mGenre').value = m ? (m.genre || '') : '';
   $('mTmdb').value = m ? (m.tmdb_id || '') : '';
   $('mRating').value = m ? (m.rating || '') : '';
@@ -304,6 +305,7 @@ function collectMovie() {
     id: id,
     title: title,
     year: $('mYear').value.trim(),
+    release_date: $('mReleaseDate').value,
     genre: $('mGenre').value.trim(),
     tmdb_id: $('mTmdb').value.trim(),
     rating: $('mRating').value.trim(),
@@ -597,6 +599,7 @@ function tmdbFillMovie(id) {
       box.style.display = 'none';
       $('mTitle').value = m.title || '';
       $('mYear').value = (m.release_date || '').slice(0, 4);
+      $('mReleaseDate').value = m.release_date || '';
       $('mGenre').value = (m.genres || []).map(function (g) { return g.name; }).join(', ');
       $('mTmdb').value = m.id || '';
       $('mRating').value = m.vote_average ? Number(m.vote_average).toFixed(1) : '';
