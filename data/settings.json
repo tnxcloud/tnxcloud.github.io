@@ -1,1 +1,22 @@
-{"ads":{"body_code":"","enabled":false,"head_code":""},"categories":["Action","Comedy","Drama","Horror","Sci-Fi","Thriller","Romance","Animation"],"dark_default":true,"embed_server":"https://vidsrc.xyz/embed/movie/{tmdb}","logo_url":"","notice":"","site_name":"VioletFlex"}
+{
+  "ads": {
+    "body_code": "",
+    "enabled": false,
+    "head_code": ""
+  },
+  "categories": [
+    "Action",
+    "Comedy",
+    "Drama",
+    "Horror",
+    "Sci-Fi",
+    "Thriller",
+    "Romance",
+    "Animation"
+  ],
+  "dark_default": true,
+  "embed_server": "https://vidsrc.xyz/embed/movie/{tmdb}",
+  "logo_url": "",
+  "notice": "This site can under mentanence",
+  "site_name": "TNxHuB"
+}
