@@ -444,7 +444,22 @@ window.switchTab = switchTab;
 
 /* ---------- TMDB auto-fill ---------- */
 var _tmdbTimer = null;
-function tmdbKey() { return (settings && settings.tmdb_api_key || '').trim(); }
+var DEFAULT_TMDB_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYmRjYjNmMGEwNjExMTU1N2M4MWJhYTc0ZjJhZThlYiIsIm5iZiI6MTc5MTc0MTU2Ny43MDU5OTk5LCJzdWIiOiI2YWNiY2U3ZmIxNTk1OGYxZjhjZjRkNTkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.X3LdC9Jzqh3ouyDrCooPdygDrExJZyL-dwgtTZ2Vl_k';
+function tmdbKey() {
+  var k = (settings && settings.tmdb_api_key || '').trim();
+  return k || DEFAULT_TMDB_KEY;
+}
+function tmdbFetch(url) {
+  var key = tmdbKey();
+  var headers = { 'Accept': 'application/json' };
+  // v4 JWT token (starts with eyJ) uses Bearer header; v3 key uses api_key param
+  if (key.indexOf('eyJ') === 0) {
+    headers['Authorization'] = 'Bearer ' + key;
+  } else {
+    url += (url.indexOf('?') > -1 ? '&' : '?') + 'api_key=' + encodeURIComponent(key);
+  }
+  return fetch(url, { headers: headers }).then(function (r) { return r.json(); });
+}
 
 function initTmdbSearch() {
   var inp = $('tmdbSearch');
@@ -468,8 +483,7 @@ function tmdbSearch(q) {
   var box = $('tmdbResults');
   box.style.display = 'block';
   box.innerHTML = '<div style="padding:12px;color:#888;">Searching…</div>';
-  fetch('https://api.themoviedb.org/3/search/movie?api_key=' + encodeURIComponent(tmdbKey()) + '&query=' + encodeURIComponent(q) + '&include_adult=false')
-    .then(function (r) { return r.json(); })
+  tmdbFetch('https://api.themoviedb.org/3/search/movie?query=' + encodeURIComponent(q) + '&include_adult=false')
     .then(function (d) {
       var list = (d.results || []).slice(0, 8);
       if (!list.length) { box.innerHTML = '<div style="padding:12px;color:#888;">Kichu paini.</div>'; return; }
@@ -490,8 +504,7 @@ function tmdbSearch(q) {
 function tmdbFillMovie(id) {
   var box = $('tmdbResults');
   box.innerHTML = '<div style="padding:12px;color:#888;">Loading details…</div>';
-  fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + encodeURIComponent(tmdbKey()) + '&append_to_response=credits')
-    .then(function (r) { return r.json(); })
+  tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '?append_to_response=credits')
     .then(function (m) {
       box.style.display = 'none';
       $('mTitle').value = m.title || '';
