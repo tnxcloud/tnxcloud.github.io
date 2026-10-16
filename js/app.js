@@ -108,7 +108,10 @@
   function renderCatChips() {
     var wrap = document.getElementById('catChips');
     if (!wrap) return;
-    var cats = ['All'].concat((settings && settings.categories) || []);
+    var rawCats = (settings && settings.categories) || [];
+    var cats = ['All'].concat(rawCats.map(function (c) {
+      return (c && typeof c === 'object') ? (c.label || c.id || '') : String(c);
+    }).filter(Boolean));
     wrap.innerHTML = cats.map(function (c) {
       return '<button type="button" class="chip' + (c === activeCat ? ' on' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
     }).join('');
@@ -149,7 +152,9 @@
     var wrap = document.getElementById('catRows');
     if (!wrap) return;
     if (activeCat !== 'All') { wrap.innerHTML = ''; return; }
-    var cats = (settings && settings.categories) || [];
+    var cats = ((settings && settings.categories) || []).map(function (c) {
+      return (c && typeof c === 'object') ? (c.label || c.id || '') : String(c);
+    }).filter(Boolean);
     var html = '';
     cats.slice(0, 6).forEach(function (c) {
       var list = vis.filter(function (m) {
