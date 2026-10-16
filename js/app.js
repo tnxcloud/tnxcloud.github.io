@@ -168,16 +168,67 @@
   }
 
   /* ---------- search ---------- */
+  /* ---------- smart fuzzy search ---------- */
+  function lev(a, b) {
+    a = a.toLowerCase(); b = b.toLowerCase();
+    var m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    var d = [];
+    for (var i = 0; i <= m; i++) d[i] = [i];
+    for (var j = 0; j <= n; j++) d[0][j] = j;
+    for (i = 1; i <= m; i++) for (j = 1; j <= n; j++)
+      d[i][j] = Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+    return d[m][n];
+  }
+  function fuzzyScore(query, text) {
+    if (!text) return 0;
+    query = query.toLowerCase().trim(); text = text.toLowerCase();
+    if (!query) return 0;
+    if (text.indexOf(query) > -1) return 100; // exact substring = best
+    var words = text.split(/[^a-z0-9]+/);
+    var best = 0;
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i];
+      if (!w) continue;
+      var dist = lev(query, w);
+      var maxLen = Math.max(query.length, w.length);
+      var sim = Math.round((1 - dist / maxLen) * 100);
+      if (sim > best) best = sim;
+    }
+    return best;
+  }
+  function movieSearchText(m) {
+    var parts = [m.title, m.genre, m.director, m.language, m.country, m.year];
+    if (Array.isArray(m.cast)) parts.push(m.cast.map(function(c){return (c&&typeof c==='object')?(c.name||''):String(c);}).join(' '));
+    else if (m.cast) parts.push(String(m.cast));
+    if (Array.isArray(m.tags)) parts.push(m.tags.join(' '));
+    else if (m.tags) parts.push(String(m.tags));
+    if (m.description) parts.push(m.description);
+    return parts.filter(Boolean).join(' ');
+  }
+  function smartSearch(query) {
+    var q = query.trim().toLowerCase();
+    if (q.length < 2) return [];
+    var scored = [];
+    movies.filter(listed).forEach(function (m) {
+      var score = fuzzyScore(q, movieSearchText(m));
+      // boost title matches
+      var titleScore = fuzzyScore(q, m.title || '');
+      score = Math.max(score, titleScore + 10);
+      if (score >= 55) scored.push({ m: m, s: score });
+    });
+    scored.sort(function (a, b) { return b.s - a.s; });
+    return scored.slice(0, 8).map(function (x) { return x.m; });
+  }
+
   function initSearch() {
     var input = document.getElementById('searchInput');
     var box = document.getElementById('searchResults');
     if (!input || !box) return;
     input.addEventListener('input', function () {
-      var q = input.value.trim().toLowerCase();
+      var q = input.value.trim();
       if (q.length < 2) { box.classList.remove('show'); box.innerHTML = ''; return; }
-      var hits = movies.filter(listed).filter(function (m) {
-        return (m.title || '').toLowerCase().indexOf(q) > -1;
-      }).slice(0, 8);
+      var hits = smartSearch(q);
       if (!hits.length) { box.innerHTML = '<div class="sr-item"><div class="s">No results</div></div>'; }
       else {
         box.innerHTML = hits.map(function (m) {

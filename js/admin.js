@@ -275,6 +275,7 @@ function openMovieModal(id) {
   (m && m.servers || []).forEach(function (s) { srvLines.push((s.name || '') + '|' + (s.url || '')); });
   $('mServers').value = srvLines.join('\n');
   $('mDesc').value = m ? (m.description || '') : '';
+  $('mTags').value = m ? ((Array.isArray(m.tags) ? m.tags.join(', ') : (m.tags || ''))) : '';
   $('mFeatured').checked = !!(m && m.is_featured);
   $('mTrending').checked = !!(m && m.is_trending);
   $('mListed').checked = !m || m.listed !== false;
@@ -325,6 +326,7 @@ function collectMovie() {
     video_url: $('mVideo').value.trim(),
     servers: servers,
     description: $('mDesc').value.trim(),
+    tags: $('mTags').value.split(',').map(function (s) { return s.trim(); }).filter(Boolean),
     is_featured: $('mFeatured').checked,
     is_trending: $('mTrending').checked,
     listed: $('mListed').checked
@@ -688,6 +690,11 @@ function tmdbFillMovie(id) {
       $('mBackdrop').value = m.backdrop_path ? 'https://image.tmdb.org/t/p/original' + m.backdrop_path : '';
       $('mDesc').value = m.overview || '';
       $('tmdbSearch').value = m.title || '';
+      /* fetch TMDB keywords for smart search tags */
+      tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '/keywords').then(function (k) {
+        var kw = (k.keywords || []).map(function (x) { return x.name; }).filter(Boolean).slice(0, 10);
+        if (kw.length) $('mTags').value = kw.join(', ');
+      }).catch(function () {});
       toast('TMDB theke fill hoise ✓');
     })
     .catch(function (e) { toast('TMDB error: ' + e.message); });
