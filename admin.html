@@ -46,7 +46,6 @@
       <a href="index.html" class="logo">VioletFlex <span style="font-size:.7rem;color:var(--text-faint)">ADMIN</span></a>
       <div style="margin-left:auto;display:flex;gap:10px;">
         <button class="btn btn-ghost btn-sm" type="button" onclick="window.open('index.html','_blank')">View Site</button>
-        <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" onclick="doLogout()">Disconnect</button>
       </div>
     </div>
   </header>
@@ -98,7 +97,7 @@
         <div class="field"><label>TMDB API Key (for auto-fill — get free at themoviedb.org)</label><input type="text" id="setTmdbKey" placeholder="Paste your TMDB API key" autocomplete="off" spellcheck="false"></div>
         <div class="field"><label>Announcement / Notice (optional)</label><input type="text" id="setNotice"></div>
         <div class="check-row"><input type="checkbox" id="setDarkDefault" checked> <label for="setDarkDefault" style="margin:0">Dark theme by default</label></div>
-        <div style="margin-top:20px;"><button class="btn btn-grad" type="button" onclick="saveSettings()">Save Settings</button></div>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;"><button class="btn btn-grad" type="button" onclick="saveSettings()">Save Settings</button><button class="btn btn-danger" type="button" onclick="doLogout()">Disconnect</button></div>
       </div>
     </div>
 
