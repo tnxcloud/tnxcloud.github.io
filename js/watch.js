@@ -175,15 +175,28 @@
       document.getElementById('wBack').href = 'movie.html?id=' + encodeURIComponent(movie.id);
       document.getElementById('wDetails').href = 'movie.html?id=' + encodeURIComponent(movie.id);
 
-      /* cast below player */
+      /* cast below player — with photos */
       var castSec = document.getElementById('wCastSec');
       var castBox = document.getElementById('wCast');
-      var castList = movie.cast ? (Array.isArray(movie.cast) ? movie.cast.map(function (c) { return (c && typeof c === 'object') ? (c.name || '') : String(c); }).filter(Boolean) : String(movie.cast).split(',').map(function (s) { return s.trim(); }).filter(Boolean)) : [];
+      var castList = [];
+      if (movie.cast) {
+        if (Array.isArray(movie.cast)) {
+          castList = movie.cast.map(function (c) {
+            if (c && typeof c === 'object') return { name: c.name || '', photo: c.photo || '' };
+            return { name: String(c), photo: '' };
+          }).filter(function (c) { return c.name; });
+        } else {
+          castList = String(movie.cast).split(',').map(function (s) { return { name: s.trim(), photo: '' }; }).filter(function (c) { return c.name; });
+        }
+      }
       if (castSec && castBox && castList.length) {
         castSec.style.display = '';
-        castBox.innerHTML = castList.map(function (c) {
-          return '<span class="pill" style="padding:8px 14px;">' + esc(c) + '</span>';
-        }).join('');
+        castBox.innerHTML = '<div class="cast-grid">' + castList.map(function (c) {
+          var img = c.photo
+            ? '<img src="' + esc(c.photo) + '" alt="' + esc(c.name) + '" loading="lazy" decoding="async">'
+            : '<div class="cast-noimg">🎭</div>';
+          return '<div class="cast-card">' + img + '<div class="cast-name">' + esc(c.name) + '</div></div>';
+        }).join('') + '</div>';
       }
 
       buildServers();

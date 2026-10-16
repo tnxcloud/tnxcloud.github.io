@@ -72,6 +72,25 @@
       '<span>' + esc(m.genre || '') + '</span>' +
       (m.duration ? '<span>' + esc(m.duration) + '</span>' : '');
     if (desc) desc.textContent = m.description || '';
+    /* hero cast strip */
+    var hc = document.getElementById('heroCast');
+    if (hc) {
+      var hcast = [];
+      if (Array.isArray(m.cast)) {
+        hcast = m.cast.map(function (c) {
+          if (c && typeof c === 'object') return { name: c.name || '', photo: c.photo || '' };
+          return { name: String(c), photo: '' };
+        }).filter(function (c) { return c.name; }).slice(0, 6);
+      } else if (m.cast) {
+        hcast = String(m.cast).split(',').map(function (s) { return { name: s.trim(), photo: '' }; }).filter(function (c) { return c.name; }).slice(0, 6);
+      }
+      hc.innerHTML = hcast.length ? hcast.map(function (c) {
+        var img = c.photo
+          ? '<img src="' + esc(c.photo) + '" alt="' + esc(c.name) + '" loading="lazy" decoding="async" title="' + esc(c.name) + '">'
+          : '<div class="hcast-noimg" title="' + esc(c.name) + '">🎭</div>';
+        return '<div class="hcast-item">' + img + '</div>';
+      }).join('') : '';
+    }
     if (watch) watch.href = 'watch.html?id=' + encodeURIComponent(m.id);
     if (info) info.href = 'movie.html?id=' + encodeURIComponent(m.id);
 

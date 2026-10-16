@@ -440,6 +440,11 @@ tr:hover td { background: rgba(139,92,246,.05); }
 }
 .btn-watch-side { text-align:center; }
 
+/* Hero cast strip */
+.hero-cast { display:flex; gap:8px; margin:12px 0 4px; }
+.hcast-item img { width:38px; height:38px; border-radius:50%; object-fit:cover; border:2px solid rgba(139,92,246,.4); }
+.hcast-noimg { width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font-size:1.1rem; background:var(--grad-soft); border:2px solid rgba(139,92,246,.4); }
+
 /* Cast grid with photos — minimal */
 .cast-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:10px; margin-top:12px; }
 .cast-card { text-align:center; }
