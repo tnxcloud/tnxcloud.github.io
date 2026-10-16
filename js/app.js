@@ -199,6 +199,13 @@
       var fn = document.getElementById('footName');
       if (fn) fn.textContent = settings.site_name;
     }
+    var nb = document.getElementById('noticeBar');
+    if (nb) {
+      if (settings.notice && settings.notice.trim()) {
+        document.getElementById('noticeText').textContent = settings.notice.trim();
+        nb.style.display = '';
+      } else nb.style.display = 'none';
+    }
   }
 
   /* ---------- boot ---------- */
