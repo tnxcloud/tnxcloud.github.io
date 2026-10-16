@@ -12,13 +12,17 @@
     var m = new RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
     return m ? decodeURIComponent(m[1]) : null;
   }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
   function fetchJSON(url) {
     return fetch(url + (url.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
   }
   function toast(msg, ms) {
-    var t = document.getElementById('toast');
-    if (!t) return;
+    var t = document.getElementById('toast');    if (!t) return;
     t.textContent = msg;
     t.classList.add('show');
     setTimeout(function () { t.classList.remove('show'); }, ms || 3200);
@@ -170,6 +174,17 @@
       document.getElementById('wTitle').textContent = movie.title + (movie.year ? ' (' + movie.year + ')' : '');
       document.getElementById('wBack').href = 'movie.html?id=' + encodeURIComponent(movie.id);
       document.getElementById('wDetails').href = 'movie.html?id=' + encodeURIComponent(movie.id);
+
+      /* cast below player */
+      var castSec = document.getElementById('wCastSec');
+      var castBox = document.getElementById('wCast');
+      var castList = movie.cast ? (Array.isArray(movie.cast) ? movie.cast : String(movie.cast).split(',').map(function (s) { return s.trim(); }).filter(Boolean)) : [];
+      if (castSec && castBox && castList.length) {
+        castSec.style.display = '';
+        castBox.innerHTML = castList.map(function (c) {
+          return '<span class="pill" style="padding:8px 14px;">' + esc(c) + '</span>';
+        }).join('');
+      }
 
       buildServers();
       renderServerBtns();
