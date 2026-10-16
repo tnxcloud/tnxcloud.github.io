@@ -404,6 +404,11 @@ tr:hover td { background: rgba(139,92,246,.05); }
   .card { flex-basis: 138px; }
   .detail-body { flex-direction: column; padding: 0 18px; margin-top: -80px; }
   .detail-poster { flex: none; width: 150px; }
+  .detail-top-row { gap:14px; }
+  .detail-side-extra .detail-extra { grid-template-columns:1fr; gap:8px; }
+  .detail-side-extra .extra-box { padding:10px 12px; }
+  .detail-side-extra .extra-box .k { font-size:10px; }
+  .detail-side-extra .extra-box .v { font-size:13px; }
   .detail-info { padding-top: 0; }
   .modal .grid2 { grid-template-columns: 1fr; }
   .dash-head { flex-direction: column; align-items: flex-start; }
@@ -432,6 +437,9 @@ tr:hover td { background: rgba(139,92,246,.05); }
 .toggle-input:checked + .toggle-sw.toggle-sm::after { left:18px; }
 
 .detail-poster-col { display:flex; flex-direction:column; gap:12px; flex:none; }
+.detail-top-row { display:flex; gap:20px; align-items:flex-start; }
+.detail-side-extra { flex:1; min-width:0; padding-top:4px; }
+.detail-side-extra .detail-extra { grid-template-columns:1fr; margin-bottom:0; }
 .detail-hero { position:relative; }
 .back-overlay {
   position:absolute; top:16px; left:16px; z-index:5;
