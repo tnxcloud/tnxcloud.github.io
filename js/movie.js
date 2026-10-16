@@ -1,4 +1,4 @@
-/* TNxHuB — movie detail logic */
+/* TNxMovieZone — movie detail logic */
 (function () {
   'use strict';
 

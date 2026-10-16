@@ -1,4 +1,4 @@
-/* TNxHuB — watch page: multi-server player with auto-failover */
+/* TNxMovieZone — watch page: multi-server player with auto-failover */
 (function () {
   'use strict';
 
@@ -170,7 +170,7 @@
       }
       if (!movie) { document.getElementById('wTitle').textContent = 'Video not found'; return; }
 
-      document.title = 'Watch ' + movie.title + ' — ' + (settings && settings.site_name ? settings.site_name : 'TNxHuB');
+      document.title = 'Watch ' + movie.title + ' — ' + (settings && settings.site_name ? settings.site_name : 'TNxMovieZone');
       document.getElementById('wTitle').textContent = movie.title + (movie.year ? ' (' + movie.year + ')' : '');
       document.getElementById('wBack').href = 'movie.html?id=' + encodeURIComponent(movie.id);
       document.getElementById('wDetails').href = 'movie.html?id=' + encodeURIComponent(movie.id);

@@ -1,5 +1,5 @@
 /* ============================================================
-   TNxHuB Admin — GitHub-as-database
+   TNxMovieZone Admin — GitHub-as-database
    Reliable login: called directly from button onclick.
    No <form> element anywhere in the login flow.
    ============================================================ */
@@ -194,7 +194,7 @@ function loadSettings() {
 
 function defaultSettings() {
   return {
-    site_name: 'TNxHuB',
+    site_name: 'TNxMovieZone',
     logo_url: '',
     embed_server: 'https://vidsrc.xyz/embed/movie/{tmdb}',
     tmdb_api_key: '',
@@ -385,7 +385,7 @@ function renderSettings() {
 
 function saveSettings() {
   if (!settings) settings = defaultSettings();
-  settings.site_name = $('setSiteName').value.trim() || 'TNxHuB';
+  settings.site_name = $('setSiteName').value.trim() || 'TNxMovieZone';
   settings.logo_url = $('setLogo').value.trim();
   settings.embed_server = $('setEmbed').value.trim();
   settings.tmdb_api_key = $('setTmdbKey').value.trim();

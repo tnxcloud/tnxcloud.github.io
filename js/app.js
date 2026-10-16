@@ -1,4 +1,4 @@
-/* TNxHuB — homepage logic */
+/* TNxMovieZone — homepage logic */
 (function () {
   'use strict';
 
