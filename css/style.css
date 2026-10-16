@@ -431,13 +431,13 @@ tr:hover td { background: rgba(139,92,246,.05); }
 .toggle-sw.toggle-sm::after { width:14px; height:14px; }
 .toggle-input:checked + .toggle-sw.toggle-sm::after { left:18px; }
 
-/* Cast grid with photos */
-.cast-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:14px; margin-top:12px; }
+/* Cast grid with photos — minimal */
+.cast-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:10px; margin-top:12px; }
 .cast-card { text-align:center; }
-.cast-card img { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:12px; border:1px solid rgba(139,92,246,.25); }
-.cast-noimg { width:100%; aspect-ratio:2/3; display:grid; place-items:center; font-size:2rem; border-radius:12px; background:var(--grad-soft); border:1px solid rgba(139,92,246,.25); }
-.cast-name { font-size:12px; margin-top:6px; color:var(--text); font-weight:600; line-height:1.3; }
-.cast-char { font-size:11px; color:var(--text-faint); line-height:1.3; }
+.cast-card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; border:1px solid rgba(139,92,246,.25); }
+.cast-noimg { width:100%; aspect-ratio:1/1; display:grid; place-items:center; font-size:1.4rem; border-radius:50%; background:var(--grad-soft); border:1px solid rgba(139,92,246,.25); }
+.cast-name { font-size:10px; margin-top:4px; color:var(--text); font-weight:600; line-height:1.2; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cast-char { font-size:9px; color:var(--text-faint); line-height:1.2; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* 4K image support — crisp high-res rendering */
 img { image-rendering: -webkit-optimize-contrast; }
