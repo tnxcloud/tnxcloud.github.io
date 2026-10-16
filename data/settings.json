@@ -1,1 +1,46 @@
-{"ads":{"body_code":"","enabled":false,"head_code":""},"categories":["Action","Comedy","Drama","Horror","Sci-Fi","Thriller","Romance","Animation"],"dark_default":true,"embed_server":"https://vidsrc.xyz/embed/movie/{tmdb}","logo_url":"","notice":"","site_name":"TNxMovieZone"}
+{
+  "site_name": "TNxCLOUD",
+  "logo_url": "",
+  "request_email": "subscribepremium6@gmail.com",
+  "categories": [
+    {
+      "id": "latest",
+      "label": "Latest",
+      "subs": []
+    },
+    {
+      "id": "movie",
+      "label": "Movie",
+      "subs": []
+    },
+    {
+      "id": "web-series",
+      "label": "Web-Series",
+      "subs": []
+    },
+    {
+      "id": "anime",
+      "label": "Anime",
+      "subs": []
+    }
+  ],
+  "ads": {
+    "socialbar": "",
+    "nativebanner": "",
+    "popunder": "",
+    "custom": "",
+    "banner728": "",
+    "banner320": "",
+    "banner300": ""
+  },
+  "analytics": {
+    "provider": "firebase",
+    "firebase": {
+      "apiKey": "AIzaSyC7urN0qotkNcOvbAp99uK0Gtf6dKZzo5Q",
+      "authDomain": "tnxcloud-83e01.firebaseapp.com",
+      "projectId": "tnxcloud-83e01",
+      "appId": "1:657440421247:web:f7bc81d737874a8dc0564a"
+    }
+  },
+  "embed_server": "https://vidsrc.xyz/embed/movie/{tmdb}"
+}
