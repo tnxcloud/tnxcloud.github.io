@@ -67,6 +67,7 @@
       <button class="tab-btn on" type="button" data-tab="movies" onclick="switchTab('movies')">🎬 Movies</button>
       <button class="tab-btn" type="button" data-tab="settings" onclick="switchTab('settings')">⚙️ Site Settings</button>
       <button class="tab-btn" type="button" data-tab="cats" onclick="switchTab('cats')">🏷️ Categories</button>
+      <button class="tab-btn" type="button" data-tab="ads" onclick="switchTab('ads')">📢 Ads</button>
     </div>
 
     <!-- Movies tab -->
@@ -106,6 +107,16 @@
       <div class="tbl-wrap" style="padding:24px;">
         <div class="field"><label>Categories (one per line)</label><textarea id="setCats" rows="8"></textarea></div>
         <div><button class="btn btn-grad" type="button" onclick="saveCategories()">Save Categories</button></div>
+      </div>
+    </div>
+
+    <!-- Ads tab -->
+    <div class="tab-pane" id="tab-ads">
+      <div class="tbl-wrap" style="padding:24px;">
+        <div class="check-row" style="margin-bottom:16px;"><input type="checkbox" id="adsEnabled"> <label for="adsEnabled" style="margin:0">Enable Ads</label></div>
+        <div class="field"><label>Head Code (paste ad script for &lt;head&gt;)</label><textarea id="adsHead" rows="5" placeholder="<script>...</script>" spellcheck="false"></textarea></div>
+        <div class="field"><label>Body Code (banner / popup ad code)</label><textarea id="adsBody" rows="5" placeholder="<script>...</script>" spellcheck="false"></textarea></div>
+        <div><button class="btn btn-grad" type="button" onclick="saveAds()">Save Ads</button></div>
       </div>
     </div>
   </main>

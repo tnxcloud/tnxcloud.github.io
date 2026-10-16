@@ -397,6 +397,26 @@ function saveCategories() {
     .catch(function (e) { toast('Save failed: ' + e.message); });
 }
 
+function renderAds() {
+  if (!settings) settings = defaultSettings();
+  if (!settings.ads) settings.ads = { enabled: false, head_code: '', body_code: '' };
+  $('adsEnabled').checked = !!settings.ads.enabled;
+  $('adsHead').value = settings.ads.head_code || '';
+  $('adsBody').value = settings.ads.body_code || '';
+}
+function saveAds() {
+  if (!settings) settings = defaultSettings();
+  settings.ads = {
+    enabled: $('adsEnabled').checked,
+    head_code: $('adsHead').value,
+    body_code: $('adsBody').value
+  };
+  persistSettings('Update ads')
+    .then(function () { toast('Ads saved ✓'); })
+    .catch(function (e) { toast('Save failed: ' + e.message); });
+}
+window.saveAds = saveAds;
+
 function persistSettings(message) {
   return ghPut('data/settings.json', JSON.stringify(settings, null, 2), settingsSha, message || 'Update settings')
     .then(function (res) {
@@ -410,6 +430,7 @@ function switchTab(name) {
   btns.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tab') === name); });
   var panes = document.querySelectorAll('.tab-pane');
   panes.forEach(function (p) { p.classList.toggle('on', p.id === 'tab-' + name); });
+  if (name === 'ads') renderAds();
 }
 
 /* ---------- boot ---------- */

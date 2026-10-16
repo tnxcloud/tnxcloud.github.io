@@ -210,6 +210,19 @@
         nb.onclick = function (e) { if (e.target === nb) close(); };
       } else nb.style.display = 'none';
     }
+    /* ---------- ads ---------- */
+    if (settings.ads && settings.ads.enabled) {
+      if (settings.ads.head_code && !document.getElementById('adsHeadCode')) {
+        var h = document.createElement('div');
+        h.id = 'adsHeadCode'; h.style.display = 'none';
+        h.innerHTML = settings.ads.head_code;
+        document.head.appendChild(h);
+      }
+      if (settings.ads.body_code) {
+        var b = document.getElementById('adsBodySlot');
+        if (b && !b.innerHTML.trim()) b.innerHTML = settings.ads.body_code;
+      }
+    }
   }
 
   /* ---------- boot ---------- */
