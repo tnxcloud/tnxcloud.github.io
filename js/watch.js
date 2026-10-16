@@ -178,7 +178,7 @@
       /* cast below player */
       var castSec = document.getElementById('wCastSec');
       var castBox = document.getElementById('wCast');
-      var castList = movie.cast ? (Array.isArray(movie.cast) ? movie.cast : String(movie.cast).split(',').map(function (s) { return s.trim(); }).filter(Boolean)) : [];
+      var castList = movie.cast ? (Array.isArray(movie.cast) ? movie.cast.map(function (c) { return (c && typeof c === 'object') ? (c.name || '') : String(c); }).filter(Boolean) : String(movie.cast).split(',').map(function (s) { return s.trim(); }).filter(Boolean)) : [];
       if (castSec && castBox && castList.length) {
         castSec.style.display = '';
         castBox.innerHTML = castList.map(function (c) {

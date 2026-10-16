@@ -74,7 +74,12 @@
 
       var extra = [];
       if (m.director) extra.push(['Director', m.director]);
-      if (m.cast) extra.push(['Cast', Array.isArray(m.cast) ? m.cast.join(', ') : m.cast]);
+      if (m.cast) {
+        var castStr = Array.isArray(m.cast)
+          ? m.cast.map(function (c) { return (c && typeof c === 'object') ? (c.name || '') : String(c); }).filter(Boolean).join(', ')
+          : String(m.cast);
+        if (castStr) extra.push(['Cast', castStr]);
+      }
       if (m.genre) extra.push(['Genre', m.genre]);
       if (m.language) extra.push(['Language', m.language]);
       if (m.country) extra.push(['Country', m.country]);
