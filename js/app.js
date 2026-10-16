@@ -199,11 +199,15 @@
       var fn = document.getElementById('footName');
       if (fn) fn.textContent = settings.site_name;
     }
-    var nb = document.getElementById('noticeBar');
+    var nb = document.getElementById('noticeModal');
     if (nb) {
-      if (settings.notice && settings.notice.trim()) {
-        document.getElementById('noticeText').textContent = settings.notice.trim();
-        nb.style.display = '';
+      var txt = (settings.notice || '').trim();
+      if (txt && !sessionStorage.getItem('noticeSeen')) {
+        document.getElementById('noticeText').textContent = txt;
+        nb.style.display = 'flex';
+        var close = function () { nb.style.display = 'none'; sessionStorage.setItem('noticeSeen', '1'); };
+        document.getElementById('noticeClose').onclick = close;
+        nb.onclick = function (e) { if (e.target === nb) close(); };
       } else nb.style.display = 'none';
     }
   }

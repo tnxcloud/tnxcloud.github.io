@@ -27,7 +27,14 @@
   </div>
 </header>
 
-<div class="wrap"><div id="noticeBar" class="notice-bar" style="display:none;">📢 <span id="noticeText"></span></div></div>
+<div class="notice-modal-bg" id="noticeModal" style="display:none;">
+  <div class="notice-modal">
+    <button class="notice-close" id="noticeClose" aria-label="Close">✕</button>
+    <div class="notice-modal-icon">📢</div>
+    <h3>Announcement</h3>
+    <p id="noticeText"></p>
+  </div>
+</div>
 
 <main class="wrap">
   <!-- Hero billboard -->
