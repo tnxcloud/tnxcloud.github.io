@@ -3,26 +3,17 @@
   "logo_url": "",
   "request_email": "subscribepremium6@gmail.com",
   "categories": [
-    {
-      "id": "latest",
-      "label": "Latest",
-      "subs": []
-    },
-    {
-      "id": "movie",
-      "label": "Movie",
-      "subs": []
-    },
-    {
-      "id": "web-series",
-      "label": "Web-Series",
-      "subs": []
-    },
-    {
-      "id": "anime",
-      "label": "Anime",
-      "subs": []
-    }
+    "Action",
+    "Comedy",
+    "Drama",
+    "Horror",
+    "Thriller",
+    "Sci-Fi",
+    "Romance",
+    "Animation",
+    "Crime",
+    "Mystery",
+    "Adventure"
   ],
   "ads": {
     "socialbar": "",
