@@ -373,6 +373,7 @@ function renderSettings() {
   $('setNotice').value = settings.notice || '';
   $('setDarkDefault').checked = settings.dark_default !== false;
   $('setCats').value = (settings.categories || []).join('\n');
+  initLogoUpload();
 }
 
 function saveSettings() {
@@ -441,6 +442,46 @@ window.filterMovieTable = filterMovieTable;
 window.saveSettings = saveSettings;
 window.saveCategories = saveCategories;
 window.switchTab = switchTab;
+
+/* ---------- Logo upload from device ---------- */
+function initLogoUpload() {
+  var inp = $('logoFile');
+  if (!inp || inp._init) return;
+  inp._init = true;
+  inp.addEventListener('change', function () {
+    var file = inp.files[0];
+    if (!file) return;
+    var status = $('logoUploadStatus');
+    status.textContent = 'Uploading…';
+    status.style.color = '#888';
+    var reader = new FileReader();
+    reader.onload = function () {
+      var base64 = String(reader.result).split(',')[1];
+      var ext = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].indexOf(ext) < 0) ext = 'png';
+      var path = 'logo/logo-' + Date.now() + '.' + ext;
+      var body = { message: 'Upload site logo', content: base64, branch: gh.branch };
+      fetch('https://api.github.com' + repoPath(path), {
+        method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body)
+      }).then(function (r) {
+        if (!r.ok) throw new Error('Upload failed: ' + r.status);
+        return r.json();
+      }).then(function (d) {
+        var url = 'https://' + gh.owner + '.github.io/' + gh.repo + '/' + path;
+        // For user.github.io repos the path is root
+        if (/\.github\.io$/.test(gh.repo)) url = 'https://' + gh.owner + '.github.io/' + path;
+        $('setLogo').value = url;
+        status.textContent = 'Uploaded ✓ — Save Settings chap dao';
+        status.style.color = '#4ade80';
+        toast('Logo uploaded ✓');
+      }).catch(function (e) {
+        status.textContent = 'Error: ' + e.message;
+        status.style.color = '#f66';
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
 /* ---------- TMDB auto-fill ---------- */
 var _tmdbTimer = null;
