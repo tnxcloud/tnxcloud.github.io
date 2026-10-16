@@ -263,6 +263,7 @@ function openMovieModal(id) {
   $('mYear').value = m ? (m.year || '') : '';
   $('mReleaseDate').value = m ? (m.release_date || '') : '';
   $('mGenre').value = m ? (m.genre || '') : '';
+  $('mLang').value = m ? (m.language || '') : '';
   $('mTmdb').value = m ? (m.tmdb_id || '') : '';
   $('mRating').value = m ? (m.rating || '') : '';
   $('mDuration').value = m ? (m.duration || '') : '';
@@ -310,6 +311,7 @@ function collectMovie() {
     year: $('mYear').value.trim(),
     release_date: $('mReleaseDate').value,
     genre: $('mGenre').value.trim(),
+    language: $('mLang').value.trim(),
     tmdb_id: $('mTmdb').value.trim(),
     rating: $('mRating').value.trim(),
     duration: $('mDuration').value.trim(),
@@ -652,6 +654,10 @@ function tmdbFillMovie(id) {
       $('mYear').value = (m.release_date || '').slice(0, 4);
       $('mReleaseDate').value = m.release_date || '';
       $('mGenre').value = (m.genres || []).map(function (g) { return g.name; }).join(', ');
+      var langNames = { en: 'English', hi: 'Hindi', bn: 'Bengali', ta: 'Tamil', te: 'Telugu', ml: 'Malayalam', kn: 'Kannada', mr: 'Marathi', pa: 'Punjabi', ur: 'Urdu', es: 'Spanish', fr: 'French', de: 'German', it: 'Italian', ja: 'Japanese', ko: 'Korean', zh: 'Chinese', ar: 'Arabic', tr: 'Turkish', ru: 'Russian' };
+      var langs = (m.spoken_languages || []).map(function (l) { return langNames[l.iso_639_1] || l.english_name || l.iso_639_1; }).filter(Boolean);
+      if (!langs.length && m.original_language) langs = [langNames[m.original_language] || m.original_language];
+      $('mLang').value = langs.join(', ');
       $('mTmdb').value = m.id || '';
       $('mRating').value = m.vote_average ? Number(m.vote_average).toFixed(1) : '';
       $('mDuration').value = m.runtime ? Math.floor(m.runtime / 60) + 'h ' + (m.runtime % 60) + 'm' : '';
