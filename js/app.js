@@ -212,8 +212,20 @@
       return String(b.release_date || b.year || '').localeCompare(String(a.release_date || a.year || ''));
     }).slice(0, 20);
     if (activeCat !== 'All') {
+      var catL = activeCat.toLowerCase();
       var f = vis.filter(function (m) {
-        return (m.genre || '').toLowerCase().split(/[,\/]/).map(function (s) { return s.trim(); }).indexOf(activeCat.toLowerCase()) > -1;
+        /* Web Series: has episodes OR content_type is Web Series */
+        if (catL === 'web-series' || catL === 'web series') {
+          return (m.episodes && String(m.episodes).trim() !== '') ||
+                 (m.content_type || '').toLowerCase() === 'web series';
+        }
+        /* Anime: content_type is Anime OR genre has anime */
+        if (catL === 'anime') {
+          return (m.content_type || '').toLowerCase() === 'anime' ||
+                 (m.genre || '').toLowerCase().indexOf('anime') > -1;
+        }
+        /* default: genre match */
+        return (m.genre || '').toLowerCase().split(/[,\/]/).map(function (s) { return s.trim(); }).indexOf(catL) > -1;
       });
       renderRow('trendingRow', f);
       renderRow('latestRow', []);
@@ -236,7 +248,16 @@
     var html = '';
     cats.slice(0, 6).forEach(function (c) {
       var list = vis.filter(function (m) {
-        return (m.genre || '').toLowerCase().indexOf(c.toLowerCase()) > -1;
+        var cl = c.toLowerCase();
+        if (cl === 'web-series' || cl === 'web series') {
+          return (m.episodes && String(m.episodes).trim() !== '') ||
+                 (m.content_type || '').toLowerCase() === 'web series';
+        }
+        if (cl === 'anime') {
+          return (m.content_type || '').toLowerCase() === 'anime' ||
+                 (m.genre || '').toLowerCase().indexOf('anime') > -1;
+        }
+        return (m.genre || '').toLowerCase().indexOf(cl) > -1;
       }).slice(0, 20);
       if (!list.length) return;
       html += '<section class="row-sec"><div class="row-head"><h2 class="row-title">' + esc(c) + '</h2></div>' +

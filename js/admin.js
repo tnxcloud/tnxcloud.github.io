@@ -466,6 +466,7 @@ function openMovieModal(id) {
   $('mTags').value = m ? ((Array.isArray(m.tags) ? m.tags.join(', ') : (m.tags || ''))) : '';
   $('mTrailer').value = m ? (m.trailer_url || '') : '';
   $('mQuality').value = m ? (m.quality || '') : '';
+  $('mEpisodes').value = m ? (m.episodes || '') : '';
   $('mFeatured').checked = !!(m && m.is_featured);
   $('mTrending').checked = !!(m && m.is_trending);
   $('mListed').checked = !m || m.listed !== false;
@@ -515,6 +516,7 @@ function collectMovie() {
     tags: $('mTags').value.split(',').map(function (s) { return s.trim(); }).filter(Boolean),
     trailer_url: $('mTrailer').value.trim(),
     quality: $('mQuality').value,
+    episodes: $('mEpisodes').value.trim(),
     is_featured: $('mFeatured').checked,
     is_trending: $('mTrending').checked,
     listed: $('mListed').checked
