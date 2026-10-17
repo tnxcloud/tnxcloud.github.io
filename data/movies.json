@@ -1,206 +1,316 @@
 [
   {
+    "id": "bf698afe-4454-4544-8304-3781aecb0da5",
+    "title": "Naruto Shippūden",
+    "poster_url": "https:\/\/image.tmdb.org\/t\/p\/original\/kV27j3Nz4d5z8u6mN3EJw9RiLg2.jpg",
+    "backdrop_url": "https:\/\/image.tmdb.org\/t\/p\/original\/z0YhJvomqedHF85bplUJEotkN5l.jpg",
+    "year": "2007",
+    "release_date": "2007-02-15",
+    "genre": "Animation, Action & Adventure, Sci-Fi & Fantasy",
+    "language": "Japanese",
+    "country": "Japan",
+    "rating": "8.5",
+    "duration": "25m \/ episode",
+    "director": "",
+    "description": "After 2 and a half years Naruto finally returns to his village of Konoha, and sets about putting his ambitions to work. It will not be easy though as he has amassed a few more dangerous enemies, in the likes of the shinobi organization; Akatsuki.",
+    "video_url": "",
+    "trailer_url": "https:\/\/www.youtube.com\/watch?v=22R0j8UKRzY",
+    "quality": "",
+    "age_rating": "U",
+    "content_type": "Web Series",
+    "episodes": "500",
+    "tmdb_id": "31910",
+    "tags": "hero, fight, villain, sequel, ninja, based on manga, martial arts master, martial artist, teenage boy, teenage hero",
+    "is_featured": false,
+    "is_trending": false,
+    "listed": true,
+    "cast": [
+      {
+        "name": "Junko Takeuchi",
+        "character": "Naruto Uzumaki (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/zNjrblq3xS1idpCsmSl5P5eTon7.jpg"
+      },
+      {
+        "name": "Noriaki Sugiyama",
+        "character": "Sasuke Uchiha (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/szqqQ8T0gzuSxjU2rnWcthsaSJT.jpg"
+      },
+      {
+        "name": "Chie Nakamura",
+        "character": "Sakura Haruno (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/evB6vKUbm0CKgBcgikPeFXdwd29.jpg"
+      },
+      {
+        "name": "Kazuhiko Inoue",
+        "character": "Kakashi Hatake (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/3BpYtYRiLAmTNbCm2LXlXnkMRit.jpg"
+      },
+      {
+        "name": "Showtaro Morikubo",
+        "character": "Shikamaru Nara (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/mSTqMg8fls9pJO3Qwe47nawJ4vX.jpg"
+      },
+      {
+        "name": "Satoshi Hino",
+        "character": "Sai (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/8ZJIiwIVF2zDyyFr7oXewj0eEuu.jpg"
+      },
+      {
+        "name": "Akira Ishida",
+        "character": "Gaara (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/jnW2Gn2NlR2uwOCeyOuzypnTmkH.jpg"
+      },
+      {
+        "name": "Hideo Ishikawa",
+        "character": "Itachi Uchiha (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/gEjEDNGt3CHsyzFQdNqewZVbh0.jpg"
+      },
+      {
+        "name": "Koichi Tochika",
+        "character": "Neji Hyuga (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/wZYe5RmOLYIhpesKEaFIxz7YN7G.jpg"
+      },
+      {
+        "name": "Keiko Nemoto",
+        "character": "Shizune (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/xaWKZMr93brbPKMCjz1LT8WIgt4.jpg"
+      },
+      {
+        "name": "Kujira",
+        "character": "Orochimaru (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/dL2u3VyRBswwTEW4E8lbsHbqzeZ.jpg"
+      },
+      {
+        "name": "Masako Katsuki",
+        "character": "Tsunade (voice)",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/oIBGCgHbMy0UeFHOASKugyPHGNx.jpg"
+      }
+    ],
+    "servers": []
+  },
+  {
     "id": "m_mvchxypsepbd83",
     "title": "Reacher",
-    "content_type": "Web Series",
+    "poster_url": "https:\/\/image.tmdb.org\/t\/p\/original\/f1VCQIG2iCyOookdgOzwtUpwWC0.jpg",
+    "backdrop_url": "https:\/\/image.tmdb.org\/t\/p\/original\/pF0qkRsrHkdYadPWY9AMeFZfcwk.jpg",
     "year": "2022",
     "release_date": "2022-02-03",
     "genre": "Action & Adventure, Action, Web-Series, Thriller, Crime, Adventure",
     "language": "English, Hindi",
     "country": "United States of America",
-    "tmdb_id": "108978",
     "rating": "8.1",
     "duration": "",
     "director": "",
-    "cast": "Alan Ritchson, Agnez Mo, Sydelle Noel, Anggun, Christopher Rodriguez Marquette, Kevin Corrigan",
-    "poster_url": "https://image.tmdb.org/t/p/original/f1VCQIG2iCyOookdgOzwtUpwWC0.jpg",
-    "backdrop_url": "https://image.tmdb.org/t/p/original/pF0qkRsrHkdYadPWY9AMeFZfcwk.jpg",
-    "video_url": "",
-    "servers": [],
     "description": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explores the nation he once served.",
-    "tags": [
-      "assassin",
-      "based on novel or book",
-      "gun",
-      "espionage",
-      "police",
-      "newfoundland and labrador",
-      "conspiracy",
-      "agent",
-      "reboot",
-      "military police"
-    ],
-    "trailer_url": "https://www.youtube.com/watch?v=GSycMV-_Csw",
+    "video_url": "",
+    "trailer_url": "https:\/\/www.youtube.com\/watch?v=GSycMV-_Csw",
     "quality": "",
-    "episodes": "32",
     "age_rating": "18+",
+    "content_type": "Web Series",
+    "episodes": "32",
+    "tmdb_id": "108978",
+    "tags": "[\"assassin\",\"based on novel or book\",\"gun\",\"espionage\",\"police\",\"newfoundland and labrador\",\"conspiracy\",\"agent\",\"reboot\",\"military police\"]",
     "is_featured": false,
     "is_trending": false,
-    "listed": true
+    "listed": true,
+    "cast": [
+      {
+        "name": "Alan Ritchson",
+        "character": "",
+        "photo": ""
+      },
+      {
+        "name": "Agnez Mo",
+        "character": "",
+        "photo": ""
+      },
+      {
+        "name": "Sydelle Noel",
+        "character": "",
+        "photo": ""
+      },
+      {
+        "name": "Anggun",
+        "character": "",
+        "photo": ""
+      },
+      {
+        "name": "Christopher Rodriguez Marquette",
+        "character": "",
+        "photo": ""
+      },
+      {
+        "name": "Kevin Corrigan",
+        "character": "",
+        "photo": ""
+      }
+    ],
+    "servers": []
   },
   {
     "id": "m_mvchr0u0ft68pk",
     "title": "BLACK TORCH",
-    "content_type": "Web Series",
+    "poster_url": "https:\/\/image.tmdb.org\/t\/p\/original\/fkZ19fifxAOAxbE2ZJvXGVvDDGs.jpg",
+    "backdrop_url": "https:\/\/image.tmdb.org\/t\/p\/original\/ceirDIa8QgeeiFKFnLcQpfAH5V7.jpg",
     "year": "2026",
     "release_date": "2026-07-04",
     "genre": "Action & Adventure, Sci-Fi & Fantasy, Action, Web-Series, Anime, Sci-Fi, Animation, Mystery",
     "language": "Hindi, Japanese, English",
     "country": "Japan",
-    "tmdb_id": "285993",
     "rating": "8.1",
     "duration": "",
     "director": "",
+    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.",
+    "video_url": "",
+    "trailer_url": "https:\/\/www.youtube.com\/watch?v=Z8PW948mIn8",
+    "quality": "",
+    "age_rating": "U\/A",
+    "content_type": "Web Series",
+    "episodes": "12",
+    "tmdb_id": "285993",
+    "tags": "[\"martial arts\",\"secret organization\",\"friendship\",\"police\",\"supernatural\",\"revenge\",\"rescue\",\"outcast\",\"ninja\",\"based on manga\"]",
+    "is_featured": true,
+    "is_trending": true,
+    "listed": true,
     "cast": [
       {
         "name": "Ryota Suzuki",
         "character": "Jiro Azuma (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/4Xq18mQttuW2yfRCflnWoU7UqQ5.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/4Xq18mQttuW2yfRCflnWoU7UqQ5.jpg"
       },
       {
         "name": "Yoji Ueda",
         "character": "Rago (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/fHvIfE0Q7ab0DFlkNVFcXvTKX9y.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/fHvIfE0Q7ab0DFlkNVFcXvTKX9y.jpg"
       },
       {
         "name": "Sayaka Senbongi",
         "character": "Ichika Kishimojin (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/yLRKX9DPDGgTRKBQRFTUh3pvbU0.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/yLRKX9DPDGgTRKBQRFTUh3pvbU0.jpg"
       },
       {
         "name": "Junya Enoki",
         "character": "Reiji Kirihara (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/vBnNL3Jqy0zkS3ZgsXZmvDM9Dfz.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/vBnNL3Jqy0zkS3ZgsXZmvDM9Dfz.jpg"
       },
       {
         "name": "Junichi Suwabe",
         "character": "Ryousuke Shiba (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/4S7c3n3r07A83HvkLrnWZGVhiHg.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/4S7c3n3r07A83HvkLrnWZGVhiHg.jpg"
       },
       {
         "name": "Reina Ueda",
         "character": "Hana Usami (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/2WV61uVU7y6XGYqNHLMpP0sApdu.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/2WV61uVU7y6XGYqNHLMpP0sApdu.jpg"
       },
       {
         "name": "Toshiyuki Morikawa",
         "character": "Amagi (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/hrzGBe4nokgkBNFekNo5hlXB2Bv.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/hrzGBe4nokgkBNFekNo5hlXB2Bv.jpg"
       },
       {
         "name": "Nobuhiko Okamoto",
         "character": "Kouga (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/7s1K2yQVF5iIWILaOfG7QrMZkXA.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/7s1K2yQVF5iIWILaOfG7QrMZkXA.jpg"
       },
       {
         "name": "Shinpachi Tsuji",
         "character": "Toshimasa Azuma (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/af5ILJbixauO84bsuLOr8XSU9yd.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/af5ILJbixauO84bsuLOr8XSU9yd.jpg"
       },
       {
         "name": "Yuhko Kaida",
         "character": "Touko Kusumi (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/wttsRGyYySLPfNcDtAbNLVizHLx.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/wttsRGyYySLPfNcDtAbNLVizHLx.jpg"
       },
       {
         "name": "Hochu Otsuka",
         "character": "Banjuurou Tokieda (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/3RHQcrsWnAFK6AifSis1lMq08cR.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/3RHQcrsWnAFK6AifSis1lMq08cR.jpg"
       },
       {
         "name": "Kaito Ishikawa",
         "character": "Shinji Kirihara (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/fzjIkotjUHHs3wgftM9tqdsG8ph.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/fzjIkotjUHHs3wgftM9tqdsG8ph.jpg"
       }
     ],
-    "poster_url": "https://image.tmdb.org/t/p/original/fkZ19fifxAOAxbE2ZJvXGVvDDGs.jpg",
-    "backdrop_url": "https://image.tmdb.org/t/p/original/ceirDIa8QgeeiFKFnLcQpfAH5V7.jpg",
-    "video_url": "",
-    "servers": [],
-    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.",
-    "tags": [
-      "martial arts",
-      "secret organization",
-      "friendship",
-      "police",
-      "supernatural",
-      "revenge",
-      "rescue",
-      "outcast",
-      "ninja",
-      "based on manga"
-    ],
-    "trailer_url": "https://www.youtube.com/watch?v=Z8PW948mIn8",
-    "quality": "",
-    "episodes": "12",
-    "age_rating": "U/A",
-    "is_featured": true,
-    "is_trending": true,
-    "listed": true
+    "servers": []
   },
   {
     "id": "m_mvchldi4npel2k",
     "title": "Sardar 2",
-    "content_type": "Movie",
+    "poster_url": "https:\/\/image.tmdb.org\/t\/p\/original\/muGsRtsNrG1gnlF2fPYrBa4TGlr.jpg",
+    "backdrop_url": "https:\/\/image.tmdb.org\/t\/p\/original\/zNghOXSvoex2wHx88skt5wGEzPd.jpg",
     "year": "2026",
     "release_date": "2026-09-10",
     "genre": "Action, Thriller, Sci-Fi, Crime",
     "language": "Hindi, Kannada, Malayalam, Tamil, Telugu",
     "country": "India",
-    "tmdb_id": "1317872",
     "rating": "4.6",
     "duration": "2h 59m",
     "director": "P. S. Mithran",
+    "description": "When the mysterious Black Dagger threatens national security, Inspector Vijay embarks on his most dangerous mission yet. As the battle unfolds, the extraordinary origin of legendary spy Sardar is finally revealed, uncovering the sacrifices that forged a legend and the secrets that could shape the future.",
+    "video_url": "",
+    "trailer_url": "https:\/\/www.youtube.com\/watch?v=fKobYSy1Kiw",
+    "quality": "",
+    "age_rating": "",
+    "content_type": "Movie",
+    "episodes": "",
+    "tmdb_id": "1317872",
+    "tags": "[\"war on drugs\",\"sequel\"]",
+    "is_featured": true,
+    "is_trending": true,
+    "listed": true,
     "cast": [
       {
         "name": "Karthi",
-        "character": "Chandra Bose 'Agent Sardar' / Inspector Vijay Prakash",
-        "photo": "https://image.tmdb.org/t/p/w185/ycxl56NbjNkJZkYbUMdwGdnBIg7.jpg"
+        "character": "Chandra Bose 'Agent Sardar' \/ Inspector Vijay Prakash",
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/ycxl56NbjNkJZkYbUMdwGdnBIg7.jpg"
       },
       {
         "name": "S. J. Suryah",
         "character": "Yoganandan 'Yogi' a.k.a Black Dagger",
-        "photo": "https://image.tmdb.org/t/p/w185/7Q8510XwxPU1193cteaFQsiq2rv.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/7Q8510XwxPU1193cteaFQsiq2rv.jpg"
       },
       {
         "name": "Malavika Mohanan",
         "character": "Agent Zara",
-        "photo": "https://image.tmdb.org/t/p/w185/ukA3kk56Eqhn8g42an73CgdpXC5.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/ukA3kk56Eqhn8g42an73CgdpXC5.jpg"
       },
       {
         "name": "Ashika Ranganath",
         "character": "Faiza",
-        "photo": "https://image.tmdb.org/t/p/w185/eZrmfpxV1KCcKPiX6zWCyJLpaOc.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/eZrmfpxV1KCcKPiX6zWCyJLpaOc.jpg"
       },
       {
         "name": "Rajisha Vijayan",
         "character": "Indhrani",
-        "photo": "https://image.tmdb.org/t/p/w185/u5Oq0XHQeHeZLg0NbPZCyCo3Uc6.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/u5Oq0XHQeHeZLg0NbPZCyCo3Uc6.jpg"
       },
       {
         "name": "Nassar",
         "character": "Quartermaster Shekar Dattatri",
-        "photo": "https://image.tmdb.org/t/p/w185/p3I0tSQY3C5qZW3NzFfbpjKPNL6.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/p3I0tSQY3C5qZW3NzFfbpjKPNL6.jpg"
       },
       {
         "name": "Achyuth Kumar",
         "character": "Agent Walrus",
-        "photo": "https://image.tmdb.org/t/p/w185/zO1MoCgaz0RxILjga8VYXguROMp.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/zO1MoCgaz0RxILjga8VYXguROMp.jpg"
       },
       {
         "name": "Ashish Vidhyarthi",
         "character": "R&AW Chief Bommai",
-        "photo": "https://image.tmdb.org/t/p/w185/iBUUpfHZIfpC5afHrHwcyGTHKQF.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/iBUUpfHZIfpC5afHrHwcyGTHKQF.jpg"
       },
       {
         "name": "Munishkanth",
         "character": "Paavadaisami",
-        "photo": "https://image.tmdb.org/t/p/w185/n2SjFPNv3EN1ziqfdpyjiEvoqt7.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/n2SjFPNv3EN1ziqfdpyjiEvoqt7.jpg"
       },
       {
         "name": "Rithvik",
         "character": "Timothy 'Timmy'",
-        "photo": "https://image.tmdb.org/t/p/w185/9j9GPeTCDcqBW5TMDoQwz30usT7.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/9j9GPeTCDcqBW5TMDoQwz30usT7.jpg"
       },
       {
         "name": "Luthfudeen",
@@ -210,94 +320,91 @@
       {
         "name": "Lal Jr.",
         "character": "Airah 'Aala'",
-        "photo": "https://image.tmdb.org/t/p/w185/2QoAFcXlCwZNlYy6gTr3S2GY39o.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/2QoAFcXlCwZNlYy6gTr3S2GY39o.jpg"
       }
     ],
-    "poster_url": "https://image.tmdb.org/t/p/original/muGsRtsNrG1gnlF2fPYrBa4TGlr.jpg",
-    "backdrop_url": "https://image.tmdb.org/t/p/original/zNghOXSvoex2wHx88skt5wGEzPd.jpg",
-    "video_url": "",
-    "servers": [],
-    "description": "When the mysterious Black Dagger threatens national security, Inspector Vijay embarks on his most dangerous mission yet. As the battle unfolds, the extraordinary origin of legendary spy Sardar is finally revealed, uncovering the sacrifices that forged a legend and the secrets that could shape the future.",
-    "tags": [
-      "war on drugs",
-      "sequel"
-    ],
-    "trailer_url": "https://www.youtube.com/watch?v=fKobYSy1Kiw",
-    "quality": "",
-    "episodes": "",
-    "age_rating": "",
-    "is_featured": true,
-    "is_trending": true,
-    "listed": true
+    "servers": []
   },
   {
     "id": "m_mvccs2zd56s99h",
     "title": "3 Idiots",
-    "content_type": "Movie",
+    "poster_url": "https:\/\/image.tmdb.org\/t\/p\/original\/66A9MqXOyVFCssoloscw79z8Tew.jpg",
+    "backdrop_url": "https:\/\/image.tmdb.org\/t\/p\/original\/u7kuUaySqXBVAtqEl9vkTkAzHV9.jpg",
     "year": "2009",
     "release_date": "2009-12-23",
     "genre": "Drama, Comedy",
     "language": "Hindi, English",
     "country": "India",
-    "tmdb_id": "20453",
     "rating": "8.0",
     "duration": "2h 51m",
     "director": "Rajkumar Hirani",
+    "description": "Rascal. Joker. Dreamer. Genius... You've never met a college student quite like \"Rancho.\" From the moment he arrives at India's most prestigious university, Rancho's outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean's daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",
+    "video_url": "",
+    "trailer_url": "https:\/\/www.youtube.com\/watch?v=zIKu9k50SDo",
+    "quality": "",
+    "age_rating": "U\/A",
+    "content_type": "Movie",
+    "episodes": "",
+    "tmdb_id": "20453",
+    "tags": "[\"challenge\",\"middle class\",\"slapstick comedy\",\"coming of age\",\"flashback\",\"teacher\",\"friends\",\"engineering\",\"university\",\"subjective camera\"]",
+    "is_featured": false,
+    "is_trending": false,
+    "listed": true,
     "cast": [
       {
         "name": "Aamir Khan",
         "character": "Ranchoddas \"Rancho\" Chanchad",
-        "photo": "https://image.tmdb.org/t/p/w185/6uiZSwi2kvd1jZ7X7Xz9W9VGuV4.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/6uiZSwi2kvd1jZ7X7Xz9W9VGuV4.jpg"
       },
       {
         "name": "R. Madhavan",
         "character": "Farhan Qureshi",
-        "photo": "https://image.tmdb.org/t/p/w185/gaDrAdXxIrbBRCd9cX8YvJDEuLb.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/gaDrAdXxIrbBRCd9cX8YvJDEuLb.jpg"
       },
       {
         "name": "Sharman Joshi",
         "character": "Raju Rastogi",
-        "photo": "https://image.tmdb.org/t/p/w185/mQr8ynFFVq08qgQ4aSNl5B0ko8v.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/mQr8ynFFVq08qgQ4aSNl5B0ko8v.jpg"
       },
       {
         "name": "Kareena Kapoor Khan",
         "character": "Pia Sahastrabudhhe",
-        "photo": "https://image.tmdb.org/t/p/w185/kp9xnwDALUt6nuPBGuJHlvnxGnM.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/kp9xnwDALUt6nuPBGuJHlvnxGnM.jpg"
       },
       {
         "name": "Boman Irani",
         "character": "Viru \"Virus\" Sahastrabudhhe",
-        "photo": "https://image.tmdb.org/t/p/w185/5J7GiiNar9bg9rGYeA2L30JXE2W.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/5J7GiiNar9bg9rGYeA2L30JXE2W.jpg"
       },
       {
         "name": "Omi Vaidya",
         "character": "Chatur \"Silencer\" Ramalingam",
-        "photo": "https://image.tmdb.org/t/p/w185/G37HGmfBM8b6pTczZrpJmTFIGl.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/G37HGmfBM8b6pTczZrpJmTFIGl.jpg"
       },
       {
         "name": "Mona Singh",
         "character": "Mona Sahastrabuddhe",
-        "photo": "https://image.tmdb.org/t/p/w185/fBl5KYnlKY8HDUqlTs64xbDZtU8.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/fBl5KYnlKY8HDUqlTs64xbDZtU8.jpg"
       },
       {
         "name": "Rahul Kumar",
         "character": "Millimeter",
-        "photo": "https://image.tmdb.org/t/p/w185/pYw7c1T0ifdvWMUtUJl3GMkx4aP.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/pYw7c1T0ifdvWMUtUJl3GMkx4aP.jpg"
       },
       {
         "name": "Parikshat Sahni",
         "character": "Mr. Qureshi",
-        "photo": "https://image.tmdb.org/t/p/w185/wQs7zYQNahLrntjqd7aIrajnbpM.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/wQs7zYQNahLrntjqd7aIrajnbpM.jpg"
       },
       {
         "name": "Farida Dadi",
         "character": "Mrs. Qureshi",
-        "photo": "https://image.tmdb.org/t/p/w185/uriqyktmJedfF7LHkiWhKh4IXe1.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/uriqyktmJedfF7LHkiWhKh4IXe1.jpg"
       },
       {
         "name": "Amardeep Jha",
         "character": "Mrs. Rastogi",
-        "photo": "https://image.tmdb.org/t/p/w185/elvrWT75OcIK45N6rd9KkEM34Pe.jpg"
+        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/elvrWT75OcIK45N6rd9KkEM34Pe.jpg"
       },
       {
         "name": "Mukund Bhatt",
@@ -305,29 +412,6 @@
         "photo": ""
       }
     ],
-    "poster_url": "https://image.tmdb.org/t/p/original/66A9MqXOyVFCssoloscw79z8Tew.jpg",
-    "backdrop_url": "https://image.tmdb.org/t/p/original/u7kuUaySqXBVAtqEl9vkTkAzHV9.jpg",
-    "video_url": "",
-    "servers": [],
-    "description": "Rascal. Joker. Dreamer. Genius... You've never met a college student quite like \"Rancho.\" From the moment he arrives at India's most prestigious university, Rancho's outlandish schemes turn the campus upside down—along with the lives of his two newfound best friends. Together, they make life miserable for \"Virus,\" the school’s uptight and heartless dean. But when Rancho catches the eye of the dean's daughter, Virus sets his sights on flunking out the \"3 idiots\" once and for all.",
-    "tags": [
-      "challenge",
-      "middle class",
-      "slapstick comedy",
-      "coming of age",
-      "flashback",
-      "teacher",
-      "friends",
-      "engineering",
-      "university",
-      "subjective camera"
-    ],
-    "trailer_url": "https://www.youtube.com/watch?v=zIKu9k50SDo",
-    "quality": "",
-    "episodes": "",
-    "age_rating": "U/A",
-    "is_featured": false,
-    "is_trending": false,
-    "listed": true
+    "servers": []
   }
 ]
