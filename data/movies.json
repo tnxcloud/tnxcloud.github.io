@@ -1,5 +1,105 @@
 [
   {
+    "id": "m_mvchr0u0ft68pk",
+    "title": "BLACK TORCH",
+    "content_type": "Web Series",
+    "year": "2026",
+    "release_date": "2026-07-04",
+    "genre": "Action & Adventure, Sci-Fi & Fantasy, Action, Web-Series, Anime, Sci-Fi, Animation, Mystery",
+    "language": "Hindi, Japanese, English",
+    "country": "Japan",
+    "tmdb_id": "285993",
+    "rating": "8.1",
+    "duration": "",
+    "director": "",
+    "cast": [
+      {
+        "name": "Ryota Suzuki",
+        "character": "Jiro Azuma (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/4Xq18mQttuW2yfRCflnWoU7UqQ5.jpg"
+      },
+      {
+        "name": "Yoji Ueda",
+        "character": "Rago (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/fHvIfE0Q7ab0DFlkNVFcXvTKX9y.jpg"
+      },
+      {
+        "name": "Sayaka Senbongi",
+        "character": "Ichika Kishimojin (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/yLRKX9DPDGgTRKBQRFTUh3pvbU0.jpg"
+      },
+      {
+        "name": "Junya Enoki",
+        "character": "Reiji Kirihara (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/vBnNL3Jqy0zkS3ZgsXZmvDM9Dfz.jpg"
+      },
+      {
+        "name": "Junichi Suwabe",
+        "character": "Ryousuke Shiba (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/4S7c3n3r07A83HvkLrnWZGVhiHg.jpg"
+      },
+      {
+        "name": "Reina Ueda",
+        "character": "Hana Usami (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/2WV61uVU7y6XGYqNHLMpP0sApdu.jpg"
+      },
+      {
+        "name": "Toshiyuki Morikawa",
+        "character": "Amagi (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/hrzGBe4nokgkBNFekNo5hlXB2Bv.jpg"
+      },
+      {
+        "name": "Nobuhiko Okamoto",
+        "character": "Kouga (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/7s1K2yQVF5iIWILaOfG7QrMZkXA.jpg"
+      },
+      {
+        "name": "Shinpachi Tsuji",
+        "character": "Toshimasa Azuma (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/af5ILJbixauO84bsuLOr8XSU9yd.jpg"
+      },
+      {
+        "name": "Yuhko Kaida",
+        "character": "Touko Kusumi (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/wttsRGyYySLPfNcDtAbNLVizHLx.jpg"
+      },
+      {
+        "name": "Hochu Otsuka",
+        "character": "Banjuurou Tokieda (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/3RHQcrsWnAFK6AifSis1lMq08cR.jpg"
+      },
+      {
+        "name": "Kaito Ishikawa",
+        "character": "Shinji Kirihara (voice)",
+        "photo": "https://image.tmdb.org/t/p/w185/fzjIkotjUHHs3wgftM9tqdsG8ph.jpg"
+      }
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/original/fkZ19fifxAOAxbE2ZJvXGVvDDGs.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/original/ceirDIa8QgeeiFKFnLcQpfAH5V7.jpg",
+    "video_url": "",
+    "servers": [],
+    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.",
+    "tags": [
+      "martial arts",
+      "secret organization",
+      "friendship",
+      "police",
+      "supernatural",
+      "revenge",
+      "rescue",
+      "outcast",
+      "ninja",
+      "based on manga"
+    ],
+    "trailer_url": "https://www.youtube.com/watch?v=Z8PW948mIn8",
+    "quality": "",
+    "episodes": "12",
+    "age_rating": "U/A",
+    "is_featured": true,
+    "is_trending": true,
+    "listed": true
+  },
+  {
     "id": "m_mvchldi4npel2k",
     "title": "Sardar 2",
     "content_type": "Movie",
