@@ -370,6 +370,28 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+/* ---------- server list (global) ---------- */
+function extractEmbedUrl(raw) {
+  if (!raw) return '';
+  raw = raw.trim();
+  var m = raw.match(/<iframe[^>]+src=["']([^"']+)["']/i);
+  if (m) return m[1];
+  m = raw.match(/src=["']([^"']+)["']/i);
+  if (m && raw.indexOf('<') > -1) return m[1];
+  return raw;
+}
+function getServers() {
+  var out = [];
+  (window._serverRows || []).forEach(function (row, i) {
+    var nEl = row.querySelector('[data-srv="name"]');
+    var uEl = row.querySelector('[data-srv="url"]');
+    var name = (nEl ? nEl.value.trim() : '') || ('Server ' + (i + 1));
+    var url = extractEmbedUrl(uEl ? uEl.value : '');
+    if (url) out.push({ name: name, url: url });
+  });
+  return out;
+}
+
 function openMovieModal(id) {
   var m = null;
   if (id) {
@@ -394,15 +416,6 @@ function openMovieModal(id) {
   $('mCast').value = m ? (Array.isArray(m.cast) ? m.cast.join(', ') : (m.cast || '')) : '';
   /* ---------- dynamic server list ---------- */
   window._serverRows = [];
-  function extractEmbedUrl(raw) {
-    if (!raw) return '';
-    raw = raw.trim();
-    var m = raw.match(/<iframe[^>]+src=["']([^"']+)["']/i);
-    if (m) return m[1];
-    m = raw.match(/src=["']([^"']+)["']/i);
-    if (m && raw.indexOf('<') > -1) return m[1];
-    return raw;
-  }
   function addServerRow(name, url) {
     var list = document.getElementById('serverList');
     if (!list) return;
@@ -427,15 +440,6 @@ function openMovieModal(id) {
       var n = row.querySelector('[data-srv="name"]');
       if (n && !n.value) n.placeholder = 'Server ' + (i + 1);
     });
-  }
-  function getServers() {
-    var out = [];
-    window._serverRows.forEach(function (row, i) {
-      var name = row.querySelector('[data-srv="name"]').value.trim() || ('Server ' + (i + 1));
-      var url = extractEmbedUrl(row.querySelector('[data-srv="url"]').value);
-      if (url) out.push({ name: name, url: url });
-    });
-    return out;
   }
   function setServers(list) {
     var box = document.getElementById('serverList');
