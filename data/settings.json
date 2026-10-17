@@ -4,6 +4,8 @@
   "request_email": "subscribepremium6@gmail.com",
   "categories": [
     "Action",
+    "Web-Series",
+    "Anime",
     "Comedy",
     "Drama",
     "Horror",
@@ -13,8 +15,7 @@
     "Animation",
     "Crime",
     "Mystery",
-    "Adventure",
-    "Anime"
+    "Adventure"
   ],
   "ads": {
     "socialbar": "",
