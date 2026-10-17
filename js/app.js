@@ -219,10 +219,11 @@
           return (m.episodes && String(m.episodes).trim() !== '') ||
                  (m.content_type || '').toLowerCase() === 'web series';
         }
-        /* Anime: content_type is Anime OR genre has anime */
+        /* Anime: content_type is Anime OR genre has anime/animation */
         if (catL === 'anime') {
           return (m.content_type || '').toLowerCase() === 'anime' ||
-                 (m.genre || '').toLowerCase().indexOf('anime') > -1;
+                 (m.genre || '').toLowerCase().indexOf('anime') > -1 ||
+                 (m.genre || '').toLowerCase().indexOf('animation') > -1;
         }
         /* default: genre match */
         return (m.genre || '').toLowerCase().split(/[,\/]/).map(function (s) { return s.trim(); }).indexOf(catL) > -1;
@@ -255,7 +256,8 @@
         }
         if (cl === 'anime') {
           return (m.content_type || '').toLowerCase() === 'anime' ||
-                 (m.genre || '').toLowerCase().indexOf('anime') > -1;
+                 (m.genre || '').toLowerCase().indexOf('anime') > -1 ||
+                 (m.genre || '').toLowerCase().indexOf('animation') > -1;
         }
         return (m.genre || '').toLowerCase().indexOf(cl) > -1;
       }).slice(0, 20);
