@@ -288,6 +288,17 @@ function syncGenreFromCats() {
 function autoSelectCatsFromGenre() {
   renderCatSelect($('mGenre').value);
 }
+/* manual typing in genre field -> update chips live */
+document.addEventListener('DOMContentLoaded', function () {
+  var g = document.getElementById('mGenre');
+  if (g) {
+    var t;
+    g.addEventListener('input', function () {
+      clearTimeout(t);
+      t = setTimeout(function () { renderCatSelect(g.value); }, 400);
+    });
+  }
+});
 
 function openMovieModal(id) {
   var m = null;
