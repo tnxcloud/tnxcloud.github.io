@@ -323,6 +323,28 @@ document.addEventListener('DOMContentLoaded', function () {
       t = setTimeout(function () { renderCatSelect(g.value); }, 400);
     });
   }
+  /* add custom category to site-wide list */
+  var addBtn = document.getElementById('addCatBtn');
+  if (addBtn) {
+    addBtn.onclick = function () {
+      var inp = document.getElementById('newCatInput');
+      var val = (inp.value || '').trim();
+      if (!val) { toast('Category name likho'); return; }
+      var cats = getCatList();
+      if (cats.map(function (c) { return c.toLowerCase(); }).indexOf(val.toLowerCase()) > -1) {
+        toast('Ei category already ase'); return;
+      }
+      if (!settings) settings = {};
+      /* handle both string[] and object[] formats */
+      var raw = settings.categories || [];
+      var isObj = raw.length && typeof raw[0] === 'object';
+      raw.push(isObj ? { id: val.toLowerCase().replace(/\s+/g, '-'), label: val, subs: [] } : val);
+      settings.categories = raw;
+      persistSettings('Add custom category')
+        .then(function () { toast('Category add hoise ✓'); inp.value = ''; renderCatSelect($('mGenre').value); })
+        .catch(function () { toast('Save failed'); });
+    };
+  }
 });
 
 function openMovieModal(id) {
