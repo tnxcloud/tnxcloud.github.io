@@ -456,8 +456,11 @@ tr:hover td { background: rgba(139,92,246,.05); }
 .detail-hero { position:relative; }
 .back-overlay {
   position:absolute; top:16px; left:16px; z-index:5;
-  background:rgba(0,0,0,.55) !important;
+  background:rgba(255,255,255,.92) !important;
+  color:#1a1a2e !important;
+  font-weight:700;
   backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
 }
 .btn-watch-side { text-align:center; }
 
