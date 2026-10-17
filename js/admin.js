@@ -857,33 +857,41 @@ function tmdbSearch(q) {
   var box = $('tmdbResults');
   box.style.display = 'block';
   box.innerHTML = '<div style="padding:12px;color:#888;">Searching…</div>';
-  tmdbFetch('https://api.themoviedb.org/3/search/movie?query=' + encodeURIComponent(q) + '&include_adult=false')
-    .then(function (d) {
-      var list = (d.results || []).slice(0, 8);
+  Promise.all([
+    tmdbFetch('https://api.themoviedb.org/3/search/movie?query=' + encodeURIComponent(q) + '&include_adult=false').catch(function () { return { results: [] }; }),
+    tmdbFetch('https://api.themoviedb.org/3/search/tv?query=' + encodeURIComponent(q) + '&include_adult=false').catch(function () { return { results: [] }; })
+  ]).then(function (res) {
+      var movies = (res[0].results || []).slice(0, 6).map(function (m) { m._type = 'movie'; return m; });
+      var tvs = (res[1].results || []).slice(0, 6).map(function (m) { m._type = 'tv'; return m; });
+      var list = movies.concat(tvs);
       if (!list.length) { box.innerHTML = '<div style="padding:12px;color:#888;">Kichu paini.</div>'; return; }
       box.innerHTML = list.map(function (m) {
-        var yr = (m.release_date || '').slice(0, 4);
+        var isTv = m._type === 'tv';
+        var title = isTv ? m.name : m.title;
+        var yr = ((isTv ? m.first_air_date : m.release_date) || '').slice(0, 4);
         var poster = m.poster_path ? 'https://image.tmdb.org/t/p/w92' + m.poster_path : '';
-        return '<div class="tmdb-item" data-id="' + m.id + '" style="display:flex;gap:10px;align-items:center;padding:8px;cursor:pointer;border-radius:8px;" onmouseover="this.style.background=\'rgba(139,92,246,.12)\'" onmouseout="this.style.background=\'\'">' +
+        return '<div class="tmdb-item" data-id="' + m.id + '" data-type="' + m._type + '" style="display:flex;gap:10px;align-items:center;padding:8px;cursor:pointer;border-radius:8px;" onmouseover="this.style.background=\'rgba(139,92,246,.12)\'" onmouseout="this.style.background=\'\'">' +
           (poster ? '<img src="' + poster + '" style="width:36px;height:54px;object-fit:cover;border-radius:6px;">' : '') +
-          '<div><div style="font-weight:600;">' + esc(m.title) + '</div><div style="font-size:12px;color:#888;">' + yr + (m.original_language ? ' • ' + m.original_language.toUpperCase() : '') + '</div></div></div>';
+          '<div><div style="font-weight:600;">' + esc(title) + (isTv ? ' <span style="font-size:11px;background:#8b5cf6;color:#fff;padding:1px 6px;border-radius:4px;">📺 TV</span>' : '') + '</div><div style="font-size:12px;color:#888;">' + yr + (m.original_language ? ' • ' + m.original_language.toUpperCase() : '') + '</div></div></div>';
       }).join('');
       box.querySelectorAll('.tmdb-item').forEach(function (el) {
-        el.addEventListener('click', function () { tmdbFillMovie(el.getAttribute('data-id')); });
+        el.addEventListener('click', function () { tmdbFillMovie(el.getAttribute('data-id'), el.getAttribute('data-type')); });
       });
     })
     .catch(function (e) { box.innerHTML = '<div style="padding:12px;color:#f66;">Error: ' + esc(e.message) + '</div>'; });
 }
 
-function tmdbFillMovie(id) {
+function tmdbFillMovie(id, type) {
+  type = type === 'tv' ? 'tv' : 'movie';
   var box = $('tmdbResults');
   box.innerHTML = '<div style="padding:12px;color:#888;">Loading details…</div>';
-  tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '?append_to_response=credits')
+  tmdbFetch('https://api.themoviedb.org/3/' + type + '/' + id + '?append_to_response=credits')
     .then(function (m) {
       box.style.display = 'none';
-      $('mTitle').value = m.title || '';
-      $('mYear').value = (m.release_date || '').slice(0, 4);
-      $('mReleaseDate').value = m.release_date || '';
+      var isTv = type === 'tv';
+      $('mTitle').value = isTv ? (m.name || '') : (m.title || '');
+      $('mYear').value = ((isTv ? m.first_air_date : m.release_date) || '').slice(0, 4);
+      $('mReleaseDate').value = (isTv ? m.first_air_date : m.release_date) || '';
       $('mGenre').value = (m.genres || []).map(function (g) { return g.name; }).join(', ');
       autoSelectCatsFromGenre();
       var langNames = { en: 'English', hi: 'Hindi', bn: 'Bengali', ta: 'Tamil', te: 'Telugu', ml: 'Malayalam', kn: 'Kannada', mr: 'Marathi', pa: 'Punjabi', ur: 'Urdu', es: 'Spanish', fr: 'French', de: 'German', it: 'Italian', ja: 'Japanese', ko: 'Korean', zh: 'Chinese', ar: 'Arabic', tr: 'Turkish', ru: 'Russian' };
@@ -893,7 +901,20 @@ function tmdbFillMovie(id) {
       $('mCountry').value = (m.production_countries || []).map(function (c) { return c.name; }).join(', ');
       $('mTmdb').value = m.id || '';
       $('mRating').value = m.vote_average ? Number(m.vote_average).toFixed(1) : '';
-      $('mDuration').value = m.runtime ? Math.floor(m.runtime / 60) + 'h ' + (m.runtime % 60) + 'm' : '';
+      if (isTv) {
+        var ep = (m.episode_run_time || [])[0];
+        $('mDuration').value = ep ? ep + 'm / episode' : '';
+        if (m.number_of_episodes) $('mEpisodes').value = m.number_of_episodes;
+        /* auto-set content type to Web Series for TV */
+        var typeBox = document.getElementById('typeSelect');
+        if (typeBox) {
+          typeBox.querySelectorAll('.chip').forEach(function (c) {
+            c.classList.toggle('on', c.getAttribute('data-type') === 'Web Series');
+          });
+        }
+      } else {
+        $('mDuration').value = m.runtime ? Math.floor(m.runtime / 60) + 'h ' + (m.runtime % 60) + 'm' : '';
+      }
       var dir = (m.credits && m.credits.crew || []).filter(function (c) { return c.job === 'Director'; });
       $('mDirector').value = dir.length ? dir[0].name : '';
       window._tmdbCast = (m.credits && m.credits.cast || []).slice(0, 12).map(function (c) {
@@ -903,14 +924,14 @@ function tmdbFillMovie(id) {
       $('mPoster').value = m.poster_path ? 'https://image.tmdb.org/t/p/original' + m.poster_path : '';
       $('mBackdrop').value = m.backdrop_path ? 'https://image.tmdb.org/t/p/original' + m.backdrop_path : '';
       $('mDesc').value = m.overview || '';
-      $('tmdbSearch').value = m.title || '';
+      $('tmdbSearch').value = isTv ? (m.name || '') : (m.title || '');
       /* fetch TMDB keywords for smart search tags */
-      tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '/keywords').then(function (k) {
-        var kw = (k.keywords || []).map(function (x) { return x.name; }).filter(Boolean).slice(0, 10);
+      tmdbFetch('https://api.themoviedb.org/3/' + type + '/' + id + '/keywords').then(function (k) {
+        var kw = ((k.keywords || k.results) || []).map(function (x) { return x.name; }).filter(Boolean).slice(0, 10);
         if (kw.length) $('mTags').value = kw.join(', ');
       }).catch(function () {});
       /* fetch TMDB trailer */
-      tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '/videos').then(function (v) {
+      tmdbFetch('https://api.themoviedb.org/3/' + type + '/' + id + '/videos').then(function (v) {
         var vids = v.results || [];
         var tr = vids.filter(function (x) { return x.site === 'YouTube' && x.type === 'Trailer'; })[0]
               || vids.filter(function (x) { return x.site === 'YouTube'; })[0];
