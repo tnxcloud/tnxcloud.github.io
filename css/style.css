@@ -198,7 +198,7 @@ img { display: block; max-width: 100%; }
 .imdb { background: #f5c518; color: #000; font-weight: 800; font-size: .78rem; padding: 3px 8px; border-radius: 6px; }
 .hero-desc { color: var(--text-dim); font-size: .98rem; line-height: 1.65; margin-bottom: 22px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.hero-dots { position: absolute; bottom: 22px; right: 30px; display: flex; gap: 8px; }
+.hero-dots { position: absolute; bottom: 10px; right: 30px; display: flex; gap: 8px; }
 .hero-dots button { width: 26px; height: 5px; border-radius: 3px; border: none; background: rgba(255,255,255,.25); transition: var(--transition); }
 .hero-dots button.on { background: var(--grad); width: 40px; }
 
