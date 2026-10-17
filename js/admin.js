@@ -413,7 +413,7 @@ function openMovieModal(id) {
   $('mRating').value = m ? (m.rating || '') : '';
   $('mDuration').value = m ? (m.duration || '') : '';
   $('mDirector').value = m ? (m.director || '') : '';
-  $('mCast').value = m ? (Array.isArray(m.cast) ? m.cast.join(', ') : (m.cast || '')) : '';
+  $('mCast').value = m ? (Array.isArray(m.cast) ? m.cast.map(function (c) { return (c && typeof c === 'object') ? (c.name || '') : String(c); }).join(', ') : (m.cast || '')) : '';
   /* ---------- dynamic server list ---------- */
   window._serverRows = [];
   function addServerRow(name, url) {
