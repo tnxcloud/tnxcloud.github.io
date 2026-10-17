@@ -930,6 +930,58 @@ function tmdbFillMovie(id, type) {
         var kw = ((k.keywords || k.results) || []).map(function (x) { return x.name; }).filter(Boolean).slice(0, 10);
         if (kw.length) $('mTags').value = kw.join(', ');
       }).catch(function () {});
+      /* fetch TMDB age certification */
+      (function fetchCert() {
+        function mapCert(c) {
+          if (!c) return '';
+          c = String(c).trim().toUpperCase();
+          /* India */
+          if (c === 'U') return 'U';
+          if (c === 'U/A' || c === 'UA') return 'U/A';
+          if (c === 'A') return 'A';
+          if (c === 'S') return '18+';
+          /* US */
+          if (c === 'G' || c === 'PG') return 'U';
+          if (c === 'PG-13') return 'U/A';
+          if (c === 'R') return 'A';
+          if (c === 'NC-17' || c === 'X') return '18+';
+          /* UK */
+          if (c === 'U' || c === 'PG') return 'U';
+          if (c === '12' || c === '12A') return 'U/A';
+          if (c === '15') return 'A';
+          if (c === '18') return '18+';
+          /* generic TV */
+          if (c.indexOf('TV-G') === 0 || c === 'TV-Y' || c === 'TV-Y7') return 'U';
+          if (c.indexOf('TV-PG') === 0 || c.indexOf('TV-14') === 0) return 'U/A';
+          if (c.indexOf('TV-MA') === 0) return '18+';
+          return '';
+        }
+        function pick(list) {
+          if (!list || !list.length) return '';
+          var inR = list.filter(function (r) { return r.iso_3166_1 === 'IN'; })[0];
+          var usR = list.filter(function (r) { return r.iso_3166_1 === 'US'; })[0];
+          var r = inR || usR || list[0];
+          var cert = r.certification || r.rating || '';
+          return mapCert(cert);
+        }
+        if (isTv) {
+          tmdbFetch('https://api.themoviedb.org/3/tv/' + id + '/content_ratings').then(function (cr) {
+            var v = pick(cr.results || []);
+            if (v) $('mAge').value = v;
+          }).catch(function () {});
+        } else {
+          tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '/release_dates').then(function (rd) {
+            var all = [];
+            (rd.results || []).forEach(function (r) {
+              (r.release_dates || []).forEach(function (x) {
+                if (x.certification) all.push({ iso_3166_1: r.iso_3166_1, certification: x.certification });
+              });
+            });
+            var v = pick(all);
+            if (v) $('mAge').value = v;
+          }).catch(function () {});
+        }
+      })();
       /* fetch TMDB trailer */
       tmdbFetch('https://api.themoviedb.org/3/' + type + '/' + id + '/videos').then(function (v) {
         var vids = v.results || [];
