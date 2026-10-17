@@ -367,17 +367,34 @@
     });
   }
 
-  /* ---------- scroll reveal ---------- */
+  /* ---------- scroll reveal (always re-triggers) ---------- */
   function initReveal() {
     if (!('IntersectionObserver' in window)) return;
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          /* re-animate cards inside */
+          var cards = e.target.querySelectorAll('.card');
+          cards.forEach(function (c, i) {
+            c.style.animation = 'none';
+            void c.offsetWidth;
+            c.style.animation = '';
+          });
+        } else {
+          e.target.classList.remove('in');
+        }
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.row-sec, .chips').forEach(function (el) {
       el.classList.add('reveal'); io.observe(el);
     });
+    /* observe dynamically added rows */
+    setInterval(function () {
+      document.querySelectorAll('.row-sec:not(.reveal), .chips:not(.reveal)').forEach(function (el) {
+        el.classList.add('reveal'); io.observe(el);
+      });
+    }, 2000);
   }
 
   document.addEventListener('DOMContentLoaded', boot);

@@ -689,3 +689,11 @@ img { image-rendering: -webkit-optimize-contrast; }
 
 /* --- section headers --- */
 .dash-head h2, .sec-title { animation:fadeSlideL .5s ease both; }
+
+/* --- scroll-triggered card pop (touch friendly) --- */
+@media (hover: none) {
+  .reveal.in .card { animation:riseIn .5s cubic-bezier(.22,1,.36,1) both; }
+  .reveal.in .card:nth-child(2) { animation-delay:.04s; }
+  .reveal.in .card:nth-child(3) { animation-delay:.08s; }
+  .reveal.in .card:nth-child(n+4) { animation-delay:.12s; }
+}
