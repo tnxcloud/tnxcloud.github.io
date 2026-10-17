@@ -7,6 +7,7 @@
   var heroIdx = 0;
   var heroTimer = null;
   var activeCat = 'All';
+  var activeLang = 'All';
 
   /* ---------- theme ---------- */
   function initTheme() {
@@ -146,8 +147,42 @@
     }
   }
 
+  function renderLangChips() {
+    var wrap = document.getElementById('langChips');
+    if (!wrap) return;
+    var langSet = {};
+    movies.filter(listed).forEach(function (m) {
+      (m.language || '').split(',').forEach(function (l) {
+        l = l.trim();
+        if (l) langSet[l] = true;
+      });
+    });
+    var langs = Object.keys(langSet).sort();
+    if (!langs.length) { wrap.innerHTML = ''; return; }
+    var all = ['All'].concat(langs);
+    wrap.innerHTML = '<span style="font-size:.75rem;color:var(--text-faint);margin-right:4px;">🌐</span>' + all.map(function (l) {
+      return '<button type="button" class="chip' + (l === activeLang ? ' on' : '') + '" data-lang="' + esc(l) + '">' + esc(l) + '</button>';
+    }).join('');
+    var btns = wrap.querySelectorAll('.chip');
+    for (var i = 0; i < btns.length; i++) {
+      (function (b) {
+        b.onclick = function () {
+          activeLang = b.getAttribute('data-lang');
+          renderLangChips();
+          applyFilter();
+        };
+      })(btns[i]);
+    }
+  }
+
   function applyFilter() {
     var vis = movies.filter(listed);
+    /* language filter */
+    if (activeLang !== 'All') {
+      vis = vis.filter(function (m) {
+        return (m.language || '').toLowerCase().split(',').map(function (s) { return s.trim(); }).indexOf(activeLang.toLowerCase()) > -1;
+      });
+    }
     var trending = vis.filter(function (m) { return m.is_trending; });
     var latest = vis.slice().sort(function (a, b) {
       return String(b.release_date || b.year || '').localeCompare(String(a.release_date || a.year || ''));
@@ -356,6 +391,7 @@
       settings = res[1];
       applySettings();
       renderCatChips();
+      renderLangChips();
       var featured = movies.filter(listed).filter(function (m) { return m.is_featured; });
       var heroList = featured.length ? featured : movies.filter(listed).slice(0, 5);
       if (heroList.length) { setHero(heroList); restartHero(heroList); }
