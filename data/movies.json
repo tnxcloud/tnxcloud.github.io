@@ -5,45 +5,14 @@
     "content_type": "Web Series",
     "year": "2022",
     "release_date": "2022-02-03",
-    "genre": "Action & Adventure, Crime",
-    "language": "English",
+    "genre": "Action & Adventure, Action, Web-Series, Thriller, Crime, Adventure",
+    "language": "English, Hindi",
     "country": "United States of America",
     "tmdb_id": "108978",
     "rating": "8.1",
     "duration": "",
     "director": "",
-    "cast": [
-      {
-        "name": "Alan Ritchson",
-        "character": "Jack Reacher",
-        "photo": "https://image.tmdb.org/t/p/w185/92YNEEpCyugkTzPprJwZpvVtvuK.jpg"
-      },
-      {
-        "name": "Agnez Mo",
-        "character": "Lila Hoth",
-        "photo": "https://image.tmdb.org/t/p/w185/7GuBJxf5szQRCKLk3iG2ztfCo39.jpg"
-      },
-      {
-        "name": "Sydelle Noel",
-        "character": "Tamara Green",
-        "photo": "https://image.tmdb.org/t/p/w185/fCOlRtkZVMOMDRPYhdRLeKqymVa.jpg"
-      },
-      {
-        "name": "Anggun",
-        "character": "Amisha Hoth",
-        "photo": "https://image.tmdb.org/t/p/w185/4WxHGTehDvZudrunxTZmnR66CBi.jpg"
-      },
-      {
-        "name": "Christopher Rodriguez Marquette",
-        "character": "Jacob Merrick",
-        "photo": "https://image.tmdb.org/t/p/w185/8AL7UPXM4sVkOMgTHIxNdRi2SXP.jpg"
-      },
-      {
-        "name": "Kevin Corrigan",
-        "character": "Shaun Docherty",
-        "photo": "https://image.tmdb.org/t/p/w185/obSUGc68mQDvFONalMg25Xw5GZM.jpg"
-      }
-    ],
+    "cast": "Alan Ritchson, Agnez Mo, Sydelle Noel, Anggun, Christopher Rodriguez Marquette, Kevin Corrigan",
     "poster_url": "https://image.tmdb.org/t/p/original/f1VCQIG2iCyOookdgOzwtUpwWC0.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/original/pF0qkRsrHkdYadPWY9AMeFZfcwk.jpg",
     "video_url": "",
