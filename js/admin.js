@@ -282,12 +282,13 @@ function getCatList() {
   }).filter(Boolean);
 }
 function renderCatSelect(selectedGenre) {
+  try {
   var box = document.getElementById('catSelect');
   var dd = document.getElementById('catDropdown');
   var cats = getCatList();
   var sel = (selectedGenre || '').toLowerCase().split(',').map(function (s) { return s.trim(); });
   /* dropdown */
-  if (dd) {
+  if (dd && box) {
     dd.innerHTML = '<option value="">— Category select koro —</option>' + cats.map(function (c) {
       return '<option value="' + escAttr(c) + '">' + esc(c) + '</option>';
     }).join('');
@@ -319,6 +320,7 @@ function renderCatSelect(selectedGenre) {
       };
     })(chips[i]);
   }
+  } catch (e) { console.error('renderCatSelect:', e); }
 }
 function syncGenreFromCats() {
   var box = document.getElementById('catSelect');
