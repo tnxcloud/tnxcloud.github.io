@@ -177,7 +177,8 @@
         "photo": "https://image.tmdb.org/t/p/w185/bnKqppKcRxSiEPiq2Fmbriibf5N.jpg"
       }
     ],
-    "created_at": "2026-10-16T08:31:01.451Z"
+    "created_at": "2026-10-16T08:31:01.451Z",
+    "listed": false
   },
   {
     "id": "m_mvaoyrh0whwqeh",
@@ -374,7 +375,7 @@
   {
     "id": "m_mv65huwfjm412g",
     "title": "Mousetrap",
-    "description": "A reclusive writer wakes to find his identity stolen \u2014 and must ally with a ruthless loan shark to reclaim his life from a man known as \"The Rat.\"",
+    "description": "A reclusive writer wakes to find his identity stolen — and must ally with a ruthless loan shark to reclaim his life from a man known as \"The Rat.\"",
     "tagline": null,
     "year": 2026,
     "release_date": "2026-08-28",
@@ -562,7 +563,7 @@
   {
     "id": "m_mv5i8ouf93lrca",
     "title": "BLACK TORCH",
-    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago\u2019s powers.",
+    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.",
     "year": 2026,
     "release_date": "2026-07-04",
     "genre": "Animation, Mystery, Action & Adventure, Sci-Fi & Fantasy",
@@ -665,7 +666,7 @@
   {
     "id": "m_mv5g608qifdhxp",
     "title": "Spider-Man: Brand New Day",
-    "description": "Fighting crime full-time as Spider-Man in a world that doesn't remember him\u2014and the pressure of seeing his old friends move on without him\u2014sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",
+    "description": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",
     "year": 2026,
     "release_date": "2026-07-29",
     "genre": "Science Fiction, Action, Adventure",
@@ -739,7 +740,7 @@
         "photo": "https://image.tmdb.org/t/p/w185/2URrZb95t3kY6pLroKny3Enmabp.jpg"
       },
       {
-        "name": "Liza Col\u00f3n-Zayas",
+        "name": "Liza Colón-Zayas",
         "character": "Detective Jean DeWolff",
         "photo": "https://image.tmdb.org/t/p/w185/q2gHcef0wckji0AS8ZEO6cYx065.jpg"
       },
