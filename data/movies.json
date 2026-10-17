@@ -664,105 +664,29 @@
   {
     "id": "m_mv5i8ouf93lrca",
     "title": "BLACK TORCH",
-    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.",
-    "year": 2026,
+    "content_type": "Anime",
+    "year": "2026",
     "release_date": "2026-07-04",
     "genre": "Animation, Mystery, Action & Adventure, Sci-Fi & Fantasy",
-    "rating": 4.3,
+    "language": "Hindi",
+    "country": "",
+    "tmdb_id": "285993",
+    "rating": "4.3",
     "duration": "",
-    "quality": [
-      "FHD",
-      "HD"
-    ],
-    "category": "anime",
-    "subcategory": "",
-    "languages": "Hindi,English",
-    "episode_info": "S 01  EP7",
-    "imdb_rating": "6.8/10",
-    "stars": "Ryota Suzuki, Yoji Ueda, Sayaka Senbongi, Junya Enoki, Junichi Suwabe",
     "director": "",
-    "quality_info": "1080p | 720p | 480p",
-    "screenshots": [],
-    "qualities": [
-      {
-        "label": "EP01",
-        "size": "",
-        "url": "https://odysee.com/$/embed/@teamcbdx:9/BLACK.TORCH.S01E01-tnxcloud:6?r=9xBCgmo6fmpAVWng5ZZG6h5knmwgLD3t",
-        "dl": "",
-        "kind": "embed"
-      },
-      {
-        "label": "EP07",
-        "size": "",
-        "url": "https://drive.google.com/file/d/1wMPIQ8c4b90BID46MFDYhHz4VkQtAqix/preview",
-        "dl": "",
-        "kind": "embed"
-      }
-    ],
+    "cast": "[object Object], [object Object], [object Object], [object Object], [object Object], [object Object], [object Object], [object Object], [object Object], [object Object]",
     "poster_url": "https://image.tmdb.org/t/p/w500/fkZ19fifxAOAxbE2ZJvXGVvDDGs.jpg",
     "backdrop_url": "https://image.tmdb.org/t/p/w1280/ceirDIa8QgeeiFKFnLcQpfAH5V7.jpg",
     "video_url": "",
-    "video_type": "direct",
-    "download_url": "",
+    "servers": [],
+    "description": "Jiro Azuma is no average high schooler. A descendant of ninjas and trained in the ancient warrior art of the shinobi, Jiro is also able to talk with animals. After a mysterious encounter with an injured cat named Rago, Jiro discovers the feline is actually the legendary Black Star of Doom! Joined by the Bureau of Espionage, they fight off swarms of mononoke lying in wait to exploit Rago’s powers.",
+    "tags": [],
+    "trailer_url": "https://www.youtube.com/watch?v=Z8PW948mIn8",
+    "quality": "",
+    "episodes": "",
     "is_featured": true,
     "is_trending": true,
-    "is_top10": false,
-    "tmdb_id": "285993",
-    "trailer_url": "https://www.youtube.com/watch?v=Z8PW948mIn8",
-    "cast": [
-      {
-        "name": "Ryota Suzuki",
-        "character": "Jiro Azuma (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/4Xq18mQttuW2yfRCflnWoU7UqQ5.jpg"
-      },
-      {
-        "name": "Yoji Ueda",
-        "character": "Rago (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/fHvIfE0Q7ab0DFlkNVFcXvTKX9y.jpg"
-      },
-      {
-        "name": "Sayaka Senbongi",
-        "character": "Ichika Kishimojin (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/yLRKX9DPDGgTRKBQRFTUh3pvbU0.jpg"
-      },
-      {
-        "name": "Junya Enoki",
-        "character": "Reiji Kirihara (voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/vBnNL3Jqy0zkS3ZgsXZmvDM9Dfz.jpg"
-      },
-      {
-        "name": "Junichi Suwabe",
-        "character": "(voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/4S7c3n3r07A83HvkLrnWZGVhiHg.jpg"
-      },
-      {
-        "name": "Reina Ueda",
-        "character": "(voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/2WV61uVU7y6XGYqNHLMpP0sApdu.jpg"
-      },
-      {
-        "name": "Toshiyuki Morikawa",
-        "character": "(voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/hrzGBe4nokgkBNFekNo5hlXB2Bv.jpg"
-      },
-      {
-        "name": "Nobuhiko Okamoto",
-        "character": "(voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/7s1K2yQVF5iIWILaOfG7QrMZkXA.jpg"
-      },
-      {
-        "name": "Shinpachi Tsuji",
-        "character": "(voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/af5ILJbixauO84bsuLOr8XSU9yd.jpg"
-      },
-      {
-        "name": "Yuhko Kaida",
-        "character": "(voice)",
-        "photo": "https://image.tmdb.org/t/p/w185/wttsRGyYySLPfNcDtAbNLVizHLx.jpg"
-      }
-    ],
-    "created_at": "2026-10-12T17:07:11.943Z",
-    "is_listed": true
+    "listed": true
   },
   {
     "id": "m_mv5g608qifdhxp",
