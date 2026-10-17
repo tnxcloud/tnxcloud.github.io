@@ -627,3 +627,48 @@ img { image-rendering: -webkit-optimize-contrast; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
+
+/* ============ ADMIN PRO ANIMATIONS ============ */
+
+/* --- dashboard stat cards --- */
+.stat { animation:riseIn .6s cubic-bezier(.22,1,.36,1) both; transition:transform .3s ease, box-shadow .3s ease; }
+.stat:nth-child(2) { animation-delay:.08s; }
+.stat:nth-child(3) { animation-delay:.16s; }
+.stat:nth-child(4) { animation-delay:.24s; }
+.stat:hover { transform:translateY(-4px) scale(1.02); box-shadow:0 12px 32px rgba(139,92,246,.25); }
+.stat .n { background:linear-gradient(135deg,#8b5cf6,#06b6d4); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+/* --- form fields --- */
+.field input, .field select, .field textarea { transition:border-color .25s ease, box-shadow .25s ease, transform .2s ease; }
+.field input:focus, .field select:focus, .field textarea:focus { transform:translateY(-1px); box-shadow:0 0 0 3px rgba(139,92,246,.2), 0 4px 16px rgba(139,92,246,.15); }
+
+/* --- tab buttons --- */
+.tab-btn { transition:all .25s cubic-bezier(.22,1,.36,1); position:relative; }
+.tab-btn:hover { transform:translateY(-2px); }
+.tab-btn.on { animation:scaleIn .3s ease; }
+.tab-pane { animation:fadeIn .35s ease; }
+
+/* --- login card --- */
+.login-card { animation:popIn .5s cubic-bezier(.22,1,.36,1); }
+
+/* --- admin buttons --- */
+.btn-danger:hover { box-shadow:0 8px 24px rgba(239,68,68,.4); }
+.btn-ghost:hover { background:rgba(139,92,246,.12); }
+
+/* --- movie modal --- */
+.modal-box { max-height:92vh; }
+.grid2 .field { animation:riseIn .4s both; }
+.grid2 .field:nth-child(2) { animation-delay:.03s; }
+.grid2 .field:nth-child(3) { animation-delay:.06s; }
+.grid2 .field:nth-child(4) { animation-delay:.09s; }
+
+/* --- TMDB results --- */
+.tmdb-item { transition:transform .2s ease, background .2s ease; animation:fadeSlideL .3s both; }
+.tmdb-item:hover { transform:translateX(6px); background:rgba(139,92,246,.1); }
+
+/* --- logo preview --- */
+.logo-preview img { transition:transform .3s ease; }
+.logo-preview img:hover { transform:scale(1.05); }
+
+/* --- section headers --- */
+.dash-head h2, .sec-title { animation:fadeSlideL .5s ease both; }
