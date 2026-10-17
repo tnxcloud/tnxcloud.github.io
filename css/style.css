@@ -176,8 +176,8 @@ img { display: block; max-width: 100%; }
 }
 /* Light mode billboard: soft light — backdrop visible */
 [data-theme="light"] .hero-shade {
-  background: linear-gradient(180deg, rgba(244,244,250,.1) 0%, rgba(244,244,250,.3) 60%, var(--bg-0) 100%),
-              linear-gradient(90deg, rgba(244,244,250,.75) 0%, rgba(244,244,250,.2) 55%, transparent 85%);
+  background: linear-gradient(180deg, rgba(244,244,250,.05) 0%, rgba(244,244,250,.2) 60%, var(--bg-0) 100%),
+              linear-gradient(90deg, rgba(244,244,250,.6) 0%, rgba(244,244,250,.12) 55%, transparent 85%);
 }
 [data-theme="light"] .hero-bg img { filter:none; }
 [data-theme="light"] .hero-title { color:#0d0d1f; text-shadow:0 1px 16px rgba(255,255,255,.9); }
