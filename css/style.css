@@ -713,3 +713,19 @@ img { image-rendering: -webkit-optimize-contrast; }
 .cat-select { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
 .cat-select .chip { cursor:pointer; user-select:none; }
 .cat-select .chip.on { background:var(--grad); color:#fff; border-color:transparent; }
+
+/* --- quality badge --- */
+.q-badge {
+  position:absolute; top:8px; right:8px; z-index:3;
+  background:linear-gradient(135deg,#8b5cf6,#06b6d4);
+  color:#fff; font-size:10px; font-weight:800; letter-spacing:.5px;
+  padding:3px 8px; border-radius:6px;
+  box-shadow:0 2px 10px rgba(0,0,0,.4);
+}
+.card-poster { position:relative; }
+.d-quality {
+  display:inline-block; margin-left:8px;
+  background:linear-gradient(135deg,#8b5cf6,#06b6d4);
+  color:#fff; font-size:11px; font-weight:800;
+  padding:3px 10px; border-radius:6px; vertical-align:middle;
+}

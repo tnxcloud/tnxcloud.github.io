@@ -201,6 +201,7 @@
 
       buildServers();
       renderServerBtns();
+      saveContinueWatching();
       if (servers.length) loadServer(0);
       else {
         var loading = document.getElementById('playerLoading');
@@ -210,6 +211,18 @@
         }
       }
     });
+  }
+
+  /* ---------- continue watching ---------- */
+  function saveContinueWatching() {
+    try {
+      var key = 'tnx_continue';
+      var list = JSON.parse(localStorage.getItem(key) || '[]');
+      list = list.filter(function (x) { return String(x.id) !== String(movie.id); });
+      list.unshift({ id: movie.id, ts: Date.now() });
+      list = list.slice(0, 20);
+      localStorage.setItem(key, JSON.stringify(list));
+    } catch (e) {}
   }
 
   document.addEventListener('DOMContentLoaded', boot);

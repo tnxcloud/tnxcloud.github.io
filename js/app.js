@@ -43,11 +43,13 @@
     var badge = '';
     if (m.is_trending) badge = '<span class="card-badge">🔥 Trending</span>';
     else if (m.is_featured) badge = '<span class="card-badge">✨ Featured</span>';
+    var qbadge = m.quality ? '<span class="q-badge">' + esc(m.quality) + '</span>' : '';
     var rating = m.rating ? '<span class="imdb">★ ' + esc(m.rating) + '</span>' : '';
     return '<a class="card" href="movie.html?id=' + encodeURIComponent(m.id) + '" style="animation-delay:' + (i * 40) + 'ms">' +
       '<div class="card-poster">' +
       (m.poster_url ? '<img src="' + esc(m.poster_url) + '" alt="' + esc(m.title) + '" loading="lazy" decoding="async">' : '<div style="width:100%;height:100%;display:grid;place-items:center;background:var(--grad-soft);font-size:2rem">🎬</div>') +
       badge +
+      qbadge +
       '<div class="card-play"><span>▶</span></div>' +
       '</div>' +
       '<div class="card-info"><div class="card-title">' + esc(m.title) + '</div>' +
@@ -173,6 +175,28 @@
         };
       })(btns[i]);
     }
+  }
+
+  function renderContinueWatching() {
+    var sec = document.getElementById('continueSec');
+    var row = document.getElementById('continueRow');
+    if (!sec || !row) return;
+    var list = [];
+    try { list = JSON.parse(localStorage.getItem('tnx_continue') || '[]'); } catch (e) {}
+    var items = [];
+    list.forEach(function (x) {
+      for (var i = 0; i < movies.length; i++) {
+        if (String(movies[i].id) === String(x.id) && listed(movies[i])) { items.push(movies[i]); break; }
+      }
+    });
+    if (!items.length) { sec.style.display = 'none'; return; }
+    sec.style.display = '';
+    row.innerHTML = items.map(cardHTML).join('');
+    var clr = document.getElementById('clearContinue');
+    if (clr) clr.onclick = function () {
+      try { localStorage.removeItem('tnx_continue'); } catch (e) {}
+      sec.style.display = 'none';
+    };
   }
 
   function applyFilter() {
@@ -392,6 +416,7 @@
       applySettings();
       renderCatChips();
       renderLangChips();
+      renderContinueWatching();
       var featured = movies.filter(listed).filter(function (m) { return m.is_featured; });
       var heroList = featured.length ? featured : movies.filter(listed).slice(0, 5);
       if (heroList.length) { setHero(heroList); restartHero(heroList); }
@@ -433,6 +458,68 @@
     }, 2000);
   }
 
+  /* ---------- push notifications for new movies ---------- */
+  function initNotif() {
+    var btn = document.getElementById('notifToggle');
+    if (!btn || !('serviceWorker' in navigator) || !('Notification' in window)) {
+      if (btn) btn.style.display = 'none';
+      return;
+    }
+    function updateIcon() {
+      try {
+        btn.textContent = (localStorage.getItem('tnx_notif') === 'on' && Notification.permission === 'granted') ? '🔔' : '🔕';
+        btn.style.opacity = localStorage.getItem('tnx_notif') === 'on' ? '1' : '.5';
+      } catch (e) {}
+    }
+    updateIcon();
+    navigator.serviceWorker.register('sw.js').then(function (reg) {
+      /* listen for id updates from SW */
+      navigator.serviceWorker.addEventListener('message', function (e) {
+        if (e.data && e.data.type === 'ids') {
+          try { localStorage.setItem('tnx_known_ids', JSON.stringify(e.data.ids)); } catch (err) {}
+        }
+      });
+      btn.onclick = function () {
+        var on = false;
+        try { on = localStorage.getItem('tnx_notif') === 'on'; } catch (e) {}
+        if (on) {
+          try { localStorage.setItem('tnx_notif', 'off'); } catch (e) {}
+          updateIcon();
+          toast('Notifications off');
+          return;
+        }
+        Notification.requestPermission().then(function (perm) {
+          if (perm === 'granted') {
+            try {
+              localStorage.setItem('tnx_notif', 'on');
+              /* seed known ids so existing movies don't trigger */
+              var ids = movies.map(function (m) { return String(m.id); });
+              localStorage.setItem('tnx_known_ids', JSON.stringify(ids));
+            } catch (e) {}
+            updateIcon();
+            toast('Notun movie asle alert paba 🔔');
+          } else {
+            toast('Permission denied');
+          }
+        });
+      };
+      /* periodic check every 30 min */
+      function checkNew() {
+        var on = false, known = [];
+        try {
+          on = localStorage.getItem('tnx_notif') === 'on';
+          known = JSON.parse(localStorage.getItem('tnx_known_ids') || '[]');
+        } catch (e) {}
+        if (on && Notification.permission === 'granted' && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage({ type: 'check-new', knownIds: known });
+        }
+      }
+      setInterval(checkNew, 30 * 60 * 1000);
+      setTimeout(checkNew, 10000);
+    }).catch(function () { btn.style.display = 'none'; });
+  }
+
   document.addEventListener('DOMContentLoaded', boot);
   document.addEventListener('DOMContentLoaded', function () { setTimeout(initReveal, 300); });
+  document.addEventListener('DOMContentLoaded', function () { setTimeout(initNotif, 1500); });
 })();

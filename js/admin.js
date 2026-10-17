@@ -464,6 +464,8 @@ function openMovieModal(id) {
   setServers(allSrv);
   $('mDesc').value = m ? (m.description || '') : '';
   $('mTags').value = m ? ((Array.isArray(m.tags) ? m.tags.join(', ') : (m.tags || ''))) : '';
+  $('mTrailer').value = m ? (m.trailer_url || '') : '';
+  $('mQuality').value = m ? (m.quality || '') : '';
   $('mFeatured').checked = !!(m && m.is_featured);
   $('mTrending').checked = !!(m && m.is_trending);
   $('mListed').checked = !m || m.listed !== false;
@@ -511,6 +513,8 @@ function collectMovie() {
     servers: extraServers,
     description: $('mDesc').value.trim(),
     tags: $('mTags').value.split(',').map(function (s) { return s.trim(); }).filter(Boolean),
+    trailer_url: $('mTrailer').value.trim(),
+    quality: $('mQuality').value,
     is_featured: $('mFeatured').checked,
     is_trending: $('mTrending').checked,
     listed: $('mListed').checked
@@ -879,6 +883,13 @@ function tmdbFillMovie(id) {
       tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '/keywords').then(function (k) {
         var kw = (k.keywords || []).map(function (x) { return x.name; }).filter(Boolean).slice(0, 10);
         if (kw.length) $('mTags').value = kw.join(', ');
+      }).catch(function () {});
+      /* fetch TMDB trailer */
+      tmdbFetch('https://api.themoviedb.org/3/movie/' + id + '/videos').then(function (v) {
+        var vids = v.results || [];
+        var tr = vids.filter(function (x) { return x.site === 'YouTube' && x.type === 'Trailer'; })[0]
+              || vids.filter(function (x) { return x.site === 'YouTube'; })[0];
+        if (tr) $('mTrailer').value = 'https://www.youtube.com/watch?v=' + tr.key;
       }).catch(function () {});
       toast('TMDB theke fill hoise ✓');
     })
