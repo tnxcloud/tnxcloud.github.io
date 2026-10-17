@@ -446,6 +446,7 @@
       else { document.getElementById('heroTitle').textContent = 'No movies yet'; }
       applyFilter();
       initSearch();
+      initNotif();
     }).catch(function () {
       document.getElementById('heroTitle').textContent = 'Failed to load catalog';
     });
@@ -554,5 +555,4 @@
 
   document.addEventListener('DOMContentLoaded', boot);
   document.addEventListener('DOMContentLoaded', function () { setTimeout(initReveal, 300); });
-  document.addEventListener('DOMContentLoaded', function () { setTimeout(initNotif, 1500); });
 })();
