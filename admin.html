@@ -125,7 +125,8 @@
 
 <!-- ============ MOVIE MODAL ============ -->
 <div class="modal-bg" id="movieModal">
-  <div class="modal">
+  <div class="modal" style="position:relative;">
+    <button type="button" class="modal-back" onclick="closeMovieModal()" aria-label="Back">← Back</button>
     <h2 id="modalTitle">Add Movie</h2>
     <input type="hidden" id="mId">
     <div class="field" id="tmdbSearchWrap" style="margin-bottom:16px;">
