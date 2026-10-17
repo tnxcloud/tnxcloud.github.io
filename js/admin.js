@@ -471,6 +471,7 @@ function openMovieModal(id) {
   $('mTrailer').value = m ? (m.trailer_url || '') : '';
   $('mQuality').value = m ? (m.quality || '') : '';
   $('mEpisodes').value = m ? (m.episodes || '') : '';
+  $('mAge').value = m ? (m.age_rating || '') : '';
   $('mFeatured').checked = !!(m && m.is_featured);
   $('mTrending').checked = !!(m && m.is_trending);
   $('mListed').checked = !m || m.listed !== false;
@@ -521,6 +522,7 @@ function collectMovie() {
     trailer_url: $('mTrailer').value.trim(),
     quality: $('mQuality').value,
     episodes: $('mEpisodes').value.trim(),
+    age_rating: $('mAge').value,
     is_featured: $('mFeatured').checked,
     is_trending: $('mTrending').checked,
     listed: $('mListed').checked
@@ -588,6 +590,8 @@ function renderSettings() {
   $('setSiteName').value = settings.site_name || '';
   $('setLogo').value = settings.logo_url || '';
   $('setEmbed').value = settings.embed_server || '';
+  $('setWhatsApp').value = settings.request_whatsapp || '';
+  $('setTelegram').value = settings.request_telegram || '';
   $('setTmdbKey').value = settings.tmdb_api_key || '';
   $('setNotice').value = settings.notice || '';
   $('setDarkDefault').checked = settings.dark_default !== false;
@@ -600,6 +604,8 @@ function saveSettings() {
   settings.site_name = $('setSiteName').value.trim() || 'TNxMovieZone';
   settings.logo_url = $('setLogo').value.trim();
   settings.embed_server = $('setEmbed').value.trim();
+  settings.request_whatsapp = $('setWhatsApp').value.trim();
+  settings.request_telegram = $('setTelegram').value.trim();
   settings.tmdb_api_key = $('setTmdbKey').value.trim();
   settings.notice = $('setNotice').value.trim();
   settings.dark_default = $('setDarkDefault').checked;
