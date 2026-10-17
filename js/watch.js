@@ -225,5 +225,23 @@
     } catch (e) {}
   }
 
+  /* ---------- report broken link ---------- */
+  function initReport() {
+    var btn = document.getElementById('reportBtn');
+    if (!btn) return;
+    btn.onclick = function () {
+      var msg = '🚨 Broken Link Report: ' + (movie ? movie.title : '') + ' (ID: ' + (movie ? movie.id : '') + ')';
+      var wa = (settings && settings.request_whatsapp) || '';
+      if (wa) {
+        window.open('https://wa.me/' + wa.replace(/\D/g, '') + '?text=' + encodeURIComponent(msg), '_blank');
+      } else {
+        toast('Report system setup hoyni');
+        return;
+      }
+      toast('Report send hoise ✓');
+    };
+  }
+
   document.addEventListener('DOMContentLoaded', boot);
+  document.addEventListener('DOMContentLoaded', function () { setTimeout(initReport, 1000); });
 })();
