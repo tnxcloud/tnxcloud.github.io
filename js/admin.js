@@ -248,6 +248,31 @@ function filterMovieTable() {
 }
 
 /* ---------- movie modal ---------- */
+/* ---------- content type selector ---------- */
+var CONTENT_TYPES = ['Movie', 'Web Series', 'Anime'];
+function renderTypeSelect(selected) {
+  var box = document.getElementById('typeSelect');
+  if (!box) return;
+  box.innerHTML = CONTENT_TYPES.map(function (t) {
+    return '<span class="chip' + (t === selected ? ' on' : '') + '" data-type="' + escAttr(t) + '">' + esc(t) + '</span>';
+  }).join('');
+  var chips = box.querySelectorAll('.chip');
+  for (var i = 0; i < chips.length; i++) {
+    (function (ch) {
+      ch.onclick = function () {
+        box.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+        ch.classList.add('on');
+      };
+    })(chips[i]);
+  }
+}
+function getSelectedType() {
+  var box = document.getElementById('typeSelect');
+  if (!box) return 'Movie';
+  var on = box.querySelector('.chip.on');
+  return on ? on.getAttribute('data-type') : 'Movie';
+}
+
 /* ---------- category selector ---------- */
 function getCatList() {
   var raw = (settings && settings.categories) || [];
@@ -314,6 +339,7 @@ function openMovieModal(id) {
   $('mReleaseDate').value = m ? (m.release_date || '') : '';
   $('mGenre').value = m ? (m.genre || '') : '';
   renderCatSelect(m ? (m.genre || '') : '');
+  renderTypeSelect(m ? (m.content_type || 'Movie') : 'Movie');
   $('mLang').value = m ? (m.language || '') : '';
   $('mCountry').value = m ? (m.country || '') : '';
   $('mTmdb').value = m ? (m.tmdb_id || '') : '';
@@ -417,6 +443,7 @@ function collectMovie() {
   return {
     id: id,
     title: title,
+    content_type: getSelectedType(),
     year: $('mYear').value.trim(),
     release_date: $('mReleaseDate').value,
     genre: $('mGenre').value.trim(),
