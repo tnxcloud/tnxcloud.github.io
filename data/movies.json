@@ -1,5 +1,97 @@
 [
   {
+    "id": "m_mvchldi4npel2k",
+    "title": "Sardar 2",
+    "content_type": "Movie",
+    "year": "2026",
+    "release_date": "2026-09-10",
+    "genre": "Action, Thriller, Sci-Fi, Crime",
+    "language": "Hindi, Kannada, Malayalam, Tamil, Telugu",
+    "country": "India",
+    "tmdb_id": "1317872",
+    "rating": "4.6",
+    "duration": "2h 59m",
+    "director": "P. S. Mithran",
+    "cast": [
+      {
+        "name": "Karthi",
+        "character": "Chandra Bose 'Agent Sardar' / Inspector Vijay Prakash",
+        "photo": "https://image.tmdb.org/t/p/w185/ycxl56NbjNkJZkYbUMdwGdnBIg7.jpg"
+      },
+      {
+        "name": "S. J. Suryah",
+        "character": "Yoganandan 'Yogi' a.k.a Black Dagger",
+        "photo": "https://image.tmdb.org/t/p/w185/7Q8510XwxPU1193cteaFQsiq2rv.jpg"
+      },
+      {
+        "name": "Malavika Mohanan",
+        "character": "Agent Zara",
+        "photo": "https://image.tmdb.org/t/p/w185/ukA3kk56Eqhn8g42an73CgdpXC5.jpg"
+      },
+      {
+        "name": "Ashika Ranganath",
+        "character": "Faiza",
+        "photo": "https://image.tmdb.org/t/p/w185/eZrmfpxV1KCcKPiX6zWCyJLpaOc.jpg"
+      },
+      {
+        "name": "Rajisha Vijayan",
+        "character": "Indhrani",
+        "photo": "https://image.tmdb.org/t/p/w185/u5Oq0XHQeHeZLg0NbPZCyCo3Uc6.jpg"
+      },
+      {
+        "name": "Nassar",
+        "character": "Quartermaster Shekar Dattatri",
+        "photo": "https://image.tmdb.org/t/p/w185/p3I0tSQY3C5qZW3NzFfbpjKPNL6.jpg"
+      },
+      {
+        "name": "Achyuth Kumar",
+        "character": "Agent Walrus",
+        "photo": "https://image.tmdb.org/t/p/w185/zO1MoCgaz0RxILjga8VYXguROMp.jpg"
+      },
+      {
+        "name": "Ashish Vidhyarthi",
+        "character": "R&AW Chief Bommai",
+        "photo": "https://image.tmdb.org/t/p/w185/iBUUpfHZIfpC5afHrHwcyGTHKQF.jpg"
+      },
+      {
+        "name": "Munishkanth",
+        "character": "Paavadaisami",
+        "photo": "https://image.tmdb.org/t/p/w185/n2SjFPNv3EN1ziqfdpyjiEvoqt7.jpg"
+      },
+      {
+        "name": "Rithvik",
+        "character": "Timothy 'Timmy'",
+        "photo": "https://image.tmdb.org/t/p/w185/9j9GPeTCDcqBW5TMDoQwz30usT7.jpg"
+      },
+      {
+        "name": "Luthfudeen",
+        "character": "Young Shekhar Dattatri",
+        "photo": ""
+      },
+      {
+        "name": "Lal Jr.",
+        "character": "Airah 'Aala'",
+        "photo": "https://image.tmdb.org/t/p/w185/2QoAFcXlCwZNlYy6gTr3S2GY39o.jpg"
+      }
+    ],
+    "poster_url": "https://image.tmdb.org/t/p/original/muGsRtsNrG1gnlF2fPYrBa4TGlr.jpg",
+    "backdrop_url": "https://image.tmdb.org/t/p/original/zNghOXSvoex2wHx88skt5wGEzPd.jpg",
+    "video_url": "",
+    "servers": [],
+    "description": "When the mysterious Black Dagger threatens national security, Inspector Vijay embarks on his most dangerous mission yet. As the battle unfolds, the extraordinary origin of legendary spy Sardar is finally revealed, uncovering the sacrifices that forged a legend and the secrets that could shape the future.",
+    "tags": [
+      "war on drugs",
+      "sequel"
+    ],
+    "trailer_url": "https://www.youtube.com/watch?v=fKobYSy1Kiw",
+    "quality": "",
+    "episodes": "",
+    "age_rating": "",
+    "is_featured": true,
+    "is_trending": true,
+    "listed": true
+  },
+  {
     "id": "m_mvccs2zd56s99h",
     "title": "3 Idiots",
     "content_type": "Movie",
