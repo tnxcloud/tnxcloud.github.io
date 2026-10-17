@@ -90,6 +90,56 @@
         if (m.trailer_url) { trBtn.href = m.trailer_url; trBtn.style.display = ''; }
         else trBtn.style.display = 'none';
       }
+      /* share button */
+      var shBtn = document.getElementById('dShare');
+      if (shBtn) {
+        shBtn.onclick = function () {
+          var url = location.href;
+          var text = '🎬 ' + (m.title || '') + ' — TNxMovieZone-e dekho!';
+          if (navigator.share) {
+            navigator.share({ title: m.title, text: text, url: url }).catch(function () {});
+          } else {
+            var wa = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url);
+            window.open(wa, '_blank');
+          }
+        };
+      }
+
+      /* view counter */
+      (function countView() {
+        try {
+          var key = 'tnx_views_' + m.id;
+          var v = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+          localStorage.setItem(key, String(v));
+          var el = document.getElementById('viewCount');
+          if (el) el.textContent = '👁 ' + v.toLocaleString() + ' views';
+        } catch (e) {}
+      })();
+
+      /* user star rating */
+      (function initRating() {
+        var box = document.getElementById('starsBox');
+        var info = document.getElementById('ratingInfo');
+        if (!box) return;
+        var key = 'tnx_rating_' + m.id;
+        var my = 0;
+        try { my = parseInt(localStorage.getItem(key) || '0', 10); } catch (e) {}
+        function draw(n) {
+          var h = '';
+          for (var i = 1; i <= 5; i++) h += '<span data-s="' + i + '" style="color:' + (i <= n ? '#ffc107' : 'var(--text-faint)') + ';">★</span>';
+          box.innerHTML = h;
+        }
+        draw(my);
+        if (info && my) info.textContent = 'Tumi ' + my + '/5 diso';
+        box.querySelectorAll('span').forEach(function (s) {
+          s.onclick = function () {
+            var v = parseInt(s.getAttribute('data-s'), 10);
+            try { localStorage.setItem(key, String(v)); } catch (e) {}
+            draw(v);
+            if (info) info.textContent = 'Tumi ' + v + '/5 diso';
+          };
+        });
+      })();
 
       /* cast with photos from stored data */
       var castSec = document.getElementById('dCastSec');
