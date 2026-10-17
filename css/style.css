@@ -409,6 +409,7 @@ tr:hover td { background: rgba(139,92,246,.05); }
 
 /* Responsive */
 @media (max-width: 860px) {
+  .wrap { padding: 0 14px; }
   .nav { display: none; }
   .header-search input { width: 150px; }
   .header-search input:focus { width: 180px; }
