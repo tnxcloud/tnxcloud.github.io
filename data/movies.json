@@ -7,7 +7,7 @@
     "year": "2007",
     "release_date": "2007-02-15",
     "genre": "Animation, Action & Adventure, Sci-Fi & Fantasy",
-    "language": "Japanese",
+    "language": "Hindi,Japanese",
     "country": "Japan",
     "rating": "8.5",
     "duration": "25m \/ episode",
@@ -27,63 +27,63 @@
     "cast": [
       {
         "name": "Junko Takeuchi",
-        "character": "Naruto Uzumaki (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/zNjrblq3xS1idpCsmSl5P5eTon7.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Noriaki Sugiyama",
-        "character": "Sasuke Uchiha (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/szqqQ8T0gzuSxjU2rnWcthsaSJT.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Chie Nakamura",
-        "character": "Sakura Haruno (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/evB6vKUbm0CKgBcgikPeFXdwd29.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Kazuhiko Inoue",
-        "character": "Kakashi Hatake (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/3BpYtYRiLAmTNbCm2LXlXnkMRit.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Showtaro Morikubo",
-        "character": "Shikamaru Nara (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/mSTqMg8fls9pJO3Qwe47nawJ4vX.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Satoshi Hino",
-        "character": "Sai (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/8ZJIiwIVF2zDyyFr7oXewj0eEuu.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Akira Ishida",
-        "character": "Gaara (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/jnW2Gn2NlR2uwOCeyOuzypnTmkH.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Hideo Ishikawa",
-        "character": "Itachi Uchiha (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/gEjEDNGt3CHsyzFQdNqewZVbh0.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Koichi Tochika",
-        "character": "Neji Hyuga (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/wZYe5RmOLYIhpesKEaFIxz7YN7G.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Keiko Nemoto",
-        "character": "Shizune (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/xaWKZMr93brbPKMCjz1LT8WIgt4.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Kujira",
-        "character": "Orochimaru (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/dL2u3VyRBswwTEW4E8lbsHbqzeZ.jpg"
+        "character": "",
+        "photo": ""
       },
       {
         "name": "Masako Katsuki",
-        "character": "Tsunade (voice)",
-        "photo": "https:\/\/image.tmdb.org\/t\/p\/w185\/oIBGCgHbMy0UeFHOASKugyPHGNx.jpg"
+        "character": "",
+        "photo": ""
       }
     ],
     "servers": []
