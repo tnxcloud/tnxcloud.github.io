@@ -25,10 +25,24 @@
     </div>
     <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
     <button class="icon-btn" id="notifToggle" title="New movie alerts">🔔</button>
+    <button class="icon-btn" id="requestBtn" title="Request a movie">💬</button>
+    <a class="icon-btn" id="tgJoinBtn" href="#" target="_blank" rel="noopener" title="Join Telegram" style="display:none;text-decoration:none;">✈️</a>
   </div>
 </header>
 
 <div class="notice-modal-bg" id="noticeModal" style="display:none;">
+
+<!-- Movie Request Modal -->
+<div class="notice-modal-bg" id="requestModal" style="display:none;">
+  <div class="notice-modal">
+    <button class="notice-close" id="requestClose" aria-label="Close">✕</button>
+    <div class="notice-modal-icon">💬</div>
+    <h3>Request a Movie</h3>
+    <input type="text" id="reqTitle" placeholder="Movie/Series name..." style="width:100%;margin:8px 0;padding:10px;border-radius:8px;border:1px solid var(--glass-border);background:var(--bg-soft);color:var(--text);">
+    <input type="text" id="reqYear" placeholder="Year (optional)..." style="width:100%;margin:8px 0;padding:10px;border-radius:8px;border:1px solid var(--glass-border);background:var(--bg-soft);color:var(--text);">
+    <button type="button" class="btn btn-grad" id="reqSend" style="width:100%;margin-top:8px;">Send Request</button>
+  </div>
+</div>
   <div class="notice-modal">
     <button class="notice-close" id="noticeClose" aria-label="Close">✕</button>
     <div class="notice-modal-icon">📢</div>
@@ -79,6 +93,14 @@
       <button type="button" class="btn btn-ghost btn-sm" id="clearContinue">Clear</button>
     </div>
     <div class="poster-row" id="continueRow"></div>
+  </section>
+
+  <!-- Watchlist -->
+  <section class="row-sec" id="watchlistSec" style="display:none;">
+    <div class="row-head">
+      <h2 class="row-title">❤️ My Watchlist</h2>
+    </div>
+    <div class="poster-row" id="watchlistRow"></div>
   </section>
 
   <!-- Trending row -->
