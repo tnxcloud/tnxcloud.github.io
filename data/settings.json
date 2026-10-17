@@ -31,5 +31,5 @@
   "embed_server": "https://vidsrc.xyz/embed/movie/{tmdb}",
   "tmdb_api_key": "",
   "notice": "",
-  "dark_default": false
+  "dark_default": true
 }
