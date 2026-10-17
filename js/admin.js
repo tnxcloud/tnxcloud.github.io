@@ -248,6 +248,47 @@ function filterMovieTable() {
 }
 
 /* ---------- movie modal ---------- */
+/* ---------- category selector ---------- */
+function getCatList() {
+  var raw = (settings && settings.categories) || [];
+  return raw.map(function (c) {
+    return (c && typeof c === 'object') ? (c.label || c.id || '') : String(c);
+  }).filter(Boolean);
+}
+function renderCatSelect(selectedGenre) {
+  var box = document.getElementById('catSelect');
+  if (!box) return;
+  var cats = getCatList();
+  var sel = (selectedGenre || '').toLowerCase().split(',').map(function (s) { return s.trim(); });
+  box.innerHTML = cats.map(function (c) {
+    var on = sel.indexOf(c.toLowerCase()) > -1;
+    return '<span class="chip' + (on ? ' on' : '') + '" data-cat="' + escAttr(c) + '">' + esc(c) + '</span>';
+  }).join('');
+  var chips = box.querySelectorAll('.chip');
+  for (var i = 0; i < chips.length; i++) {
+    (function (ch) {
+      ch.onclick = function () {
+        ch.classList.toggle('on');
+        syncGenreFromCats();
+      };
+    })(chips[i]);
+  }
+}
+function syncGenreFromCats() {
+  var box = document.getElementById('catSelect');
+  if (!box) return;
+  var sel = [];
+  box.querySelectorAll('.chip.on').forEach(function (ch) { sel.push(ch.getAttribute('data-cat')); });
+  var cur = $('mGenre').value.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  /* merge: keep non-category genres, add selected */
+  var cats = getCatList().map(function (c) { return c.toLowerCase(); });
+  var keep = cur.filter(function (g) { return cats.indexOf(g.toLowerCase()) === -1; });
+  $('mGenre').value = keep.concat(sel).join(', ');
+}
+function autoSelectCatsFromGenre() {
+  renderCatSelect($('mGenre').value);
+}
+
 function openMovieModal(id) {
   var m = null;
   if (id) {
@@ -261,6 +302,7 @@ function openMovieModal(id) {
   $('mYear').value = m ? (m.year || '') : '';
   $('mReleaseDate').value = m ? (m.release_date || '') : '';
   $('mGenre').value = m ? (m.genre || '') : '';
+  renderCatSelect(m ? (m.genre || '') : '');
   $('mLang').value = m ? (m.language || '') : '';
   $('mCountry').value = m ? (m.country || '') : '';
   $('mTmdb').value = m ? (m.tmdb_id || '') : '';
@@ -727,6 +769,7 @@ function tmdbFillMovie(id) {
       $('mYear').value = (m.release_date || '').slice(0, 4);
       $('mReleaseDate').value = m.release_date || '';
       $('mGenre').value = (m.genres || []).map(function (g) { return g.name; }).join(', ');
+      autoSelectCatsFromGenre();
       var langNames = { en: 'English', hi: 'Hindi', bn: 'Bengali', ta: 'Tamil', te: 'Telugu', ml: 'Malayalam', kn: 'Kannada', mr: 'Marathi', pa: 'Punjabi', ur: 'Urdu', es: 'Spanish', fr: 'French', de: 'German', it: 'Italian', ja: 'Japanese', ko: 'Korean', zh: 'Chinese', ar: 'Arabic', tr: 'Turkish', ru: 'Russian' };
       var langs = (m.spoken_languages || []).map(function (l) { return langNames[l.iso_639_1] || l.english_name || l.iso_639_1; }).filter(Boolean);
       if (!langs.length && m.original_language) langs = [langNames[m.original_language] || m.original_language];

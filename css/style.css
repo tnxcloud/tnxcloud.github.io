@@ -708,3 +708,8 @@ img { image-rendering: -webkit-optimize-contrast; }
   transition:all .25s ease;
 }
 .modal-back:hover { background:rgba(139,92,246,.25); transform:translateX(-3px); }
+
+/* --- category selector --- */
+.cat-select { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+.cat-select .chip { cursor:pointer; user-select:none; }
+.cat-select .chip.on { background:var(--grad); color:#fff; border-color:transparent; }
