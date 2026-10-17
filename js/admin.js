@@ -249,6 +249,7 @@ function filterMovieTable() {
 
 /* ---------- movie modal ---------- */
 /* ---------- content type selector ---------- */
+function escAttr(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
 var CONTENT_TYPES = ['Movie', 'Web Series', 'Anime'];
 function renderTypeSelect(selected) {
   var box = document.getElementById('typeSelect');
@@ -441,11 +442,15 @@ function openMovieModal(id) {
     (list || []).forEach(function (s) { addServerRow(s.name, s.url); });
     if (!window._serverRows.length) addServerRow('', '');
   }
-  function escAttr(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
-  document.addEventListener('DOMContentLoaded', function () {
+  function bindAddServerBtn() {
     var btn = document.getElementById('addServerBtn');
     if (btn) btn.onclick = function () { addServerRow('', ''); };
-  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindAddServerBtn);
+  } else {
+    bindAddServerBtn();
+  }
   $('mPoster').value = m ? (m.poster_url || '') : '';
   $('mBackdrop').value = m ? (m.backdrop_url || '') : '';
   $('mVideo') && ($('mVideo').value = '');
