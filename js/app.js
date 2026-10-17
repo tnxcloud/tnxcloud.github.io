@@ -473,6 +473,16 @@
     }
     updateIcon();
     navigator.serviceWorker.register('sw.js').then(function (reg) {
+      /* auto-reload when new version deployed */
+      reg.addEventListener('updatefound', function () {
+        var nw = reg.installing;
+        if (nw) nw.addEventListener('statechange', function () {
+          if (nw.state === 'activated') {
+            toast('New update available — refreshing...');
+            setTimeout(function () { location.reload(); }, 1500);
+          }
+        });
+      });
       /* listen for id updates from SW */
       navigator.serviceWorker.addEventListener('message', function (e) {
         if (e.data && e.data.type === 'ids') {
