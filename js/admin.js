@@ -268,12 +268,72 @@ function openMovieModal(id) {
   $('mDuration').value = m ? (m.duration || '') : '';
   $('mDirector').value = m ? (m.director || '') : '';
   $('mCast').value = m ? (Array.isArray(m.cast) ? m.cast.join(', ') : (m.cast || '')) : '';
+  /* ---------- dynamic server list ---------- */
+  window._serverRows = [];
+  function extractEmbedUrl(raw) {
+    if (!raw) return '';
+    raw = raw.trim();
+    var m = raw.match(/<iframe[^>]+src=["']([^"']+)["']/i);
+    if (m) return m[1];
+    m = raw.match(/src=["']([^"']+)["']/i);
+    if (m && raw.indexOf('<') > -1) return m[1];
+    return raw;
+  }
+  function addServerRow(name, url) {
+    var list = document.getElementById('serverList');
+    if (!list) return;
+    var idx = window._serverRows.length;
+    var row = document.createElement('div');
+    row.className = 'server-row';
+    row.style.cssText = 'display:flex;gap:8px;margin-bottom:8px;align-items:center;';
+    row.innerHTML =
+      '<input type="text" placeholder="Server ' + (idx + 1) + '" value="' + escAttr(name || '') + '" data-srv="name" style="flex:0 0 110px;">' +
+      '<input type="text" placeholder="https://... or <iframe>" value="' + escAttr(url || '') + '" data-srv="url" style="flex:1;">' +
+      '<button type="button" class="btn btn-ghost btn-sm" data-srv="del" style="flex:none;">✕</button>';
+    list.appendChild(row);
+    window._serverRows.push(row);
+    row.querySelector('[data-srv="del"]').onclick = function () {
+      row.remove();
+      window._serverRows = window._serverRows.filter(function (r) { return r !== row; });
+      renumberServers();
+    };
+  }
+  function renumberServers() {
+    window._serverRows.forEach(function (row, i) {
+      var n = row.querySelector('[data-srv="name"]');
+      if (n && !n.value) n.placeholder = 'Server ' + (i + 1);
+    });
+  }
+  function getServers() {
+    var out = [];
+    window._serverRows.forEach(function (row, i) {
+      var name = row.querySelector('[data-srv="name"]').value.trim() || ('Server ' + (i + 1));
+      var url = extractEmbedUrl(row.querySelector('[data-srv="url"]').value);
+      if (url) out.push({ name: name, url: url });
+    });
+    return out;
+  }
+  function setServers(list) {
+    var box = document.getElementById('serverList');
+    if (box) box.innerHTML = '';
+    window._serverRows = [];
+    (list || []).forEach(function (s) { addServerRow(s.name, s.url); });
+    if (!window._serverRows.length) addServerRow('', '');
+  }
+  function escAttr(s) { return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('addServerBtn');
+    if (btn) btn.onclick = function () { addServerRow('', ''); };
+  });
   $('mPoster').value = m ? (m.poster_url || '') : '';
   $('mBackdrop').value = m ? (m.backdrop_url || '') : '';
-  $('mVideo').value = m ? (m.video_url || '') : '';
-  var srvLines = [];
-  (m && m.servers || []).forEach(function (s) { srvLines.push((s.name || '') + '|' + (s.url || '')); });
-  $('mServers').value = srvLines.join('\n');
+  $('mVideo') && ($('mVideo').value = '');
+  var allSrv = [];
+  if (m) {
+    if (m.video_url) allSrv.push({ name: 'Server 1', url: m.video_url });
+    (m.servers || []).forEach(function (s) { allSrv.push(s); });
+  }
+  setServers(allSrv);
   $('mDesc').value = m ? (m.description || '') : '';
   $('mTags').value = m ? ((Array.isArray(m.tags) ? m.tags.join(', ') : (m.tags || ''))) : '';
   $('mFeatured').checked = !!(m && m.is_featured);
@@ -298,14 +358,9 @@ function collectMovie() {
   var id = $('mId').value || uid();
   var title = $('mTitle').value.trim();
   if (!title) { toast('Title is required.'); return null; }
-  var servers = [];
-  $('mServers').value.split('\n').forEach(function (line) {
-    line = line.trim();
-    if (!line) return;
-    var parts = line.split('|');
-    if (parts.length >= 2) servers.push({ name: parts[0].trim(), url: parts.slice(1).join('|').trim() });
-    else servers.push({ name: 'Server', url: line });
-  });
+  var servers = getServers();
+  var video_url = servers.length ? servers[0].url : '';
+  var extraServers = servers.slice(1);
   return {
     id: id,
     title: title,
@@ -323,8 +378,8 @@ function collectMovie() {
       ? window._tmdbCast : $('mCast').value.trim(),
     poster_url: $('mPoster').value.trim(),
     backdrop_url: $('mBackdrop').value.trim(),
-    video_url: $('mVideo').value.trim(),
-    servers: servers,
+    video_url: video_url,
+    servers: extraServers,
     description: $('mDesc').value.trim(),
     tags: $('mTags').value.split(',').map(function (s) { return s.trim(); }).filter(Boolean),
     is_featured: $('mFeatured').checked,
