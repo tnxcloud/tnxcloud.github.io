@@ -243,10 +243,41 @@
   function initSearch() {
     var input = document.getElementById('searchInput');
     var box = document.getElementById('searchResults');
+    var sec = document.getElementById('searchSec');
+    var grid = document.getElementById('searchGrid');
+    var count = document.getElementById('searchCount');
+    var closeBtn = document.getElementById('searchClose');
     if (!input || !box) return;
+
+    function showFullResults(q) {
+      var hits = smartSearch(q);
+      // also get all matches (not just top 8)
+      var all = [];
+      var ql = q.trim().toLowerCase();
+      movies.filter(listed).forEach(function (m) {
+        var score = Math.max(fuzzyScore(ql, movieSearchText(m)), fuzzyScore(ql, m.title || '') + 10);
+        if (score >= 55) all.push({ m: m, s: score });
+      });
+      all.sort(function (a, b) { return b.s - a.s; });
+      if (sec && grid) {
+        sec.style.display = '';
+        if (count) count.textContent = '(' + all.length + ' found)';
+        grid.innerHTML = all.length
+          ? all.map(function (x) { return cardHTML(x.m); }).join('')
+          : '<div class="empty">No results for "' + esc(q) + '"</div>';
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      box.classList.remove('show');
+    }
+    function hideFullResults() {
+      if (sec) sec.style.display = 'none';
+      if (grid) grid.innerHTML = '';
+    }
+
     input.addEventListener('input', function () {
       var q = input.value.trim();
-      if (q.length < 2) { box.classList.remove('show'); box.innerHTML = ''; return; }
+      if (q.length < 2) { box.classList.remove('show'); box.innerHTML = ''; hideFullResults(); return; }
+      hideFullResults();
       var hits = smartSearch(q);
       if (!hits.length) { box.innerHTML = '<div class="sr-item"><div class="s">No results</div></div>'; }
       else {
@@ -261,6 +292,17 @@
     document.addEventListener('click', function (e) {
       if (!box.contains(e.target) && e.target !== input) box.classList.remove('show');
     });
+    /* Enter key = full grid results */
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        var q = input.value.trim();
+        if (q.length >= 2) showFullResults(q);
+      }
+    });
+    if (closeBtn) closeBtn.onclick = function () {
+      input.value = ''; hideFullResults(); box.classList.remove('show');
+    };
   }
 
   /* ---------- site branding ---------- */
