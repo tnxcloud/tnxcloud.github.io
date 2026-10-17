@@ -566,6 +566,19 @@ function persistMovies(message) {
     .then(function (res) {
       moviesSha = res.content && res.content.sha ? res.content.sha : moviesSha;
       renderMovies();
+    })
+    .catch(function (e) {
+      /* 409 = SHA conflict (file changed elsewhere) — refetch latest SHA and retry once */
+      if (e.status === 409) {
+        return ghGet('data/movies.json').then(function (f) {
+          moviesSha = f.sha;
+          return ghPut('data/movies.json', JSON.stringify(movies, null, 2), moviesSha, message || 'Update movies');
+        }).then(function (res) {
+          moviesSha = res.content && res.content.sha ? res.content.sha : moviesSha;
+          renderMovies();
+        });
+      }
+      throw e;
     });
 }
 
