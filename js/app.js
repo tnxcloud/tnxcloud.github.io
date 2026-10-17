@@ -39,17 +39,59 @@
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  /* ---------- watchlist ---------- */
+  function getWatchlist() {
+    try { return JSON.parse(localStorage.getItem('tnx_watchlist') || '[]'); } catch (e) { return []; }
+  }
+  function isInWatchlist(id) {
+    return getWatchlist().indexOf(String(id)) > -1;
+  }
+  function toggleWatchlist(id, ev) {
+    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+    var list = getWatchlist();
+    var sid = String(id);
+    var idx = list.indexOf(sid);
+    if (idx > -1) list.splice(idx, 1);
+    else list.unshift(sid);
+    try { localStorage.setItem('tnx_watchlist', JSON.stringify(list.slice(0, 100))); } catch (e) {}
+    document.querySelectorAll('[data-wl="' + sid + '"]').forEach(function (b) {
+      b.textContent = idx > -1 ? '🤍' : '❤️';
+      b.classList.toggle('on', idx === -1);
+    });
+    renderWatchlistRow();
+    toast(idx > -1 ? 'Watchlist theke remove' : 'Watchlist-e add hoise ❤️');
+  }
+  function renderWatchlistRow() {
+    var sec = document.getElementById('watchlistSec');
+    var row = document.getElementById('watchlistRow');
+    if (!sec || !row) return;
+    var ids = getWatchlist();
+    var items = [];
+    ids.forEach(function (id) {
+      for (var i = 0; i < movies.length; i++) {
+        if (String(movies[i].id) === String(id) && listed(movies[i])) { items.push(movies[i]); break; }
+      }
+    });
+    if (!items.length) { sec.style.display = 'none'; return; }
+    sec.style.display = '';
+    row.innerHTML = items.map(cardHTML).join('');
+  }
+
   function cardHTML(m, i) {
     var badge = '';
     if (m.is_trending) badge = '<span class="card-badge">🔥 Trending</span>';
     else if (m.is_featured) badge = '<span class="card-badge">✨ Featured</span>';
     var qbadge = m.quality ? '<span class="q-badge">' + esc(m.quality) + '</span>' : '';
+    var abadge = m.age_rating ? '<span class="a-badge">' + esc(m.age_rating) + '</span>' : '';
+    var wbtn = '<button type="button" class="wl-btn' + (isInWatchlist(m.id) ? ' on' : '') + '" data-wl="' + esc(String(m.id)) + '" onclick="toggleWatchlist(\'' + String(m.id).replace(/'/g, "\\'") + '\',event)" title="Watchlist">' + (isInWatchlist(m.id) ? '❤️' : '🤍') + '</button>';
     var rating = m.rating ? '<span class="imdb">★ ' + esc(m.rating) + '</span>' : '';
     return '<a class="card" href="movie.html?id=' + encodeURIComponent(m.id) + '" style="animation-delay:' + (i * 40) + 'ms">' +
       '<div class="card-poster">' +
       (m.poster_url ? '<img src="' + esc(m.poster_url) + '" alt="' + esc(m.title) + '" loading="lazy" decoding="async">' : '<div style="width:100%;height:100%;display:grid;place-items:center;background:var(--grad-soft);font-size:2rem">🎬</div>') +
       badge +
       qbadge +
+      abadge +
+      wbtn +
       '<div class="card-play"><span>▶</span></div>' +
       '</div>' +
       '<div class="card-info"><div class="card-title">' + esc(m.title) + '</div>' +
@@ -440,6 +482,7 @@
       renderCatChips();
       renderLangChips();
       renderContinueWatching();
+      renderWatchlistRow();
       var featured = movies.filter(listed).filter(function (m) { return m.is_featured; });
       var heroList = featured.length ? featured : movies.filter(listed).slice(0, 5);
       if (heroList.length) { setHero(heroList); restartHero(heroList); }
@@ -447,6 +490,13 @@
       applyFilter();
       initSearch();
       initNotif();
+      initRequest();
+      /* telegram join button */
+      var tgBtn = document.getElementById('tgJoinBtn');
+      if (tgBtn && settings && settings.request_telegram) {
+        tgBtn.href = settings.request_telegram;
+        tgBtn.style.display = '';
+      }
     }).catch(function () {
       document.getElementById('heroTitle').textContent = 'Failed to load catalog';
     });
@@ -553,6 +603,41 @@
     }).catch(function () { btn.style.display = 'none'; });
   }
 
+  /* ---------- movie request ---------- */
+  function initRequest() {
+    var btn = document.getElementById('requestBtn');
+    var modal = document.getElementById('requestModal');
+    var close = document.getElementById('requestClose');
+    var send = document.getElementById('reqSend');
+    if (!btn || !modal) return;
+    btn.onclick = function () { modal.style.display = 'flex'; };
+    if (close) close.onclick = function () { modal.style.display = 'none'; };
+    modal.onclick = function (e) { if (e.target === modal) modal.style.display = 'none'; };
+    if (send) send.onclick = function () {
+      var title = document.getElementById('reqTitle').value.trim();
+      var year = document.getElementById('reqYear').value.trim();
+      if (!title) { toast('Movie name likho'); return; }
+      var msg = '🎬 Movie Request: ' + title + (year ? ' (' + year + ')' : '');
+      var wa = (settings && settings.request_whatsapp) || '';
+      var tg = (settings && settings.request_telegram) || '';
+      if (wa) {
+        window.open('https://wa.me/' + wa.replace(/\D/g, '') + '?text=' + encodeURIComponent(msg), '_blank');
+      } else if (tg) {
+        window.open(tg, '_blank');
+      } else {
+        toast('Request system setup hoyni');
+        return;
+      }
+      modal.style.display = 'none';
+      document.getElementById('reqTitle').value = '';
+      document.getElementById('reqYear').value = '';
+      toast('Request send hoise ✓');
+    };
+  }
+
   document.addEventListener('DOMContentLoaded', boot);
   document.addEventListener('DOMContentLoaded', function () { setTimeout(initReveal, 300); });
+
+  /* expose for onclick handlers */
+  window.toggleWatchlist = toggleWatchlist;
 })();
