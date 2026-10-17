@@ -282,9 +282,29 @@ function getCatList() {
 }
 function renderCatSelect(selectedGenre) {
   var box = document.getElementById('catSelect');
-  if (!box) return;
+  var dd = document.getElementById('catDropdown');
   var cats = getCatList();
   var sel = (selectedGenre || '').toLowerCase().split(',').map(function (s) { return s.trim(); });
+  /* dropdown */
+  if (dd) {
+    dd.innerHTML = '<option value="">— Category select koro —</option>' + cats.map(function (c) {
+      return '<option value="' + escAttr(c) + '">' + esc(c) + '</option>';
+    }).join('');
+    dd.onchange = function () {
+      if (!dd.value) return;
+      /* toggle chip */
+      var chips = box.querySelectorAll('.chip');
+      for (var i = 0; i < chips.length; i++) {
+        if (chips[i].getAttribute('data-cat') === dd.value) {
+          chips[i].classList.add('on');
+          syncGenreFromCats();
+          break;
+        }
+      }
+      dd.value = '';
+    };
+  }
+  if (!box) return;
   box.innerHTML = cats.map(function (c) {
     var on = sel.indexOf(c.toLowerCase()) > -1;
     return '<span class="chip' + (on ? ' on' : '') + '" data-cat="' + escAttr(c) + '">' + esc(c) + '</span>';
